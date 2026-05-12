@@ -1,0 +1,7 @@
+{
+  "image": "localhost/devcontainers-base",
+
+  "mounts": [
+    "target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ]
+}
