@@ -18,7 +18,12 @@ add_executable(Stelclone
     ${CMAKE_SOURCE_DIR}/src/main.c
     ${CMAKE_SOURCE_DIR}/src/game.c
     ${CMAKE_SOURCE_DIR}/src/render.c
-    ${CMAKE_SOURCE_DIR}/src/asteroid.c
+    ${CMAKE_SOURCE_DIR}/src/game/asteroid.c
+)
+add_executable(PerfAsteroids
+    ${CMAKE_SOURCE_DIR}/src/perf/perf_asteroids.c
+    ${CMAKE_SOURCE_DIR}/src/game/asteroid.c
+    ${CMAKE_SOURCE_DIR}/src/data/resources.c
 )
 
 # Link to the actual SDL3 library.
