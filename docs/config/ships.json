@@ -1,0 +1,440 @@
+{
+  "ships": {
+    "small": {
+      "fighter": {
+        "name": "Fighter",
+        "class": "Small",
+        "role": "Short-range combat vessel",
+        "description": "Originally developed by Nova Dynamics in 2157 as a simple patrol craft, the Fighter class has evolved into the backbone of corporate space operations. These versatile vessels were first deployed during the early corporate expansion period, where their low maintenance costs and high maneuverability made them perfect for protecting corporate interests. Modern Fighters incorporate advanced technology from multiple corporations, with Nova Dynamics' weapon systems, Galactic Industries' propulsion, and Terraforming Solutions' life support all working in harmony. Their small size and high maneuverability make them perfect for hit-and-run tactics and escort missions, while their low maintenance costs make them indispensable for fleet operations.",
+        "size": 1,
+        "stats": {
+          "speed": 100,
+          "armor": 5,
+          "shields": 0,
+          "weapons": 0,
+          "health": 50,
+          "max_health": 50,
+          "evasion": 80,
+          "scan_strength": 10,
+          "range": 1000
+        },
+        "slots": {
+          "weapon": 1,
+          "utility": 1
+        },
+        "costs": {
+          "credits": 5000,
+          "cobaltite": 10,
+          "vanadium": 5
+        },
+        "crew": {
+          "min": 2,
+          "max": 2
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 100,
+        "construction_time": 30
+      },
+      "bomber": {
+        "name": "Bomber",
+        "class": "Small",
+        "role": "Short-range heavy attack vessel",
+        "description": "Developed by Nova Dynamics in response to the increasing armor of larger vessels during the Corporate Wars of the 24th century, the Bomber class represents a specialized approach to space combat. These vessels were initially designed to break through the defensive lines of rival corporations' mining operations. Their design philosophy focuses on delivering devastating strikes against well-protected targets, making them particularly effective against stations and capital ships. While they're vulnerable to faster ships, their ability to carry heavy ordnance makes them a crucial part of any fleet's offensive capabilities. The current model incorporates advanced targeting systems from Galactic Industries and reinforced armor developed by Stellar Resources.",
+        "size": 1,
+        "stats": {
+          "speed": 80,
+          "armor": 10,
+          "shields": 0,
+          "weapons": 0,
+          "health": 100,
+          "max_health": 100,
+          "evasion": 30,
+          "scan_strength": 15,
+          "range": 800
+        },
+        "slots": {
+          "weapon": 2,
+          "utility": 0
+        },
+        "costs": {
+          "credits": 12500,
+          "cobaltite": 25,
+          "vanadium": 15,
+          "chromium": 10
+        },
+        "crew": {
+          "min": 3,
+          "max": 3
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 150,
+        "construction_time": 45
+      },
+      "scout": {
+        "name": "Scout",
+        "class": "Small",
+        "role": "Reconnaissance and scanning",
+        "description": "The Scout class represents the pinnacle of reconnaissance technology, developed jointly by Frontier Enterprises and Terraforming Solutions. These vessels were crucial in the discovery of the Frontier Sector's rich mineral deposits. Their advanced sensor suites, developed from Terraforming Solutions' environmental scanning technology, can detect valuable resources and potential threats from great distances. Their lightweight construction and powerful engines allow them to quickly survey vast areas of space, making them essential for exploration and resource discovery. While they can defend themselves if necessary, their true value lies in their ability to gather intelligence and locate valuable resources.",
+        "size": 1,
+        "stats": {
+          "speed": 120,
+          "armor": 5,
+          "shields": 0,
+          "weapons": 0,
+          "health": 40,
+          "max_health": 40,
+          "evasion": 70,
+          "scan_strength": 60,
+          "range": 1500
+        },
+        "slots": {
+          "weapon": 1,
+          "utility": 2
+        },
+        "costs": {
+          "credits": 10000,
+          "cobaltite": 20,
+          "molybdenum": 12
+        },
+        "crew": {
+          "min": 2,
+          "max": 2
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 120,
+        "construction_time": 25
+      }
+    },
+    "medium": {
+      "survey_ship": {
+        "name": "Survey Ship",
+        "class": "Medium",
+        "role": "Advanced reconnaissance and resource surveying",
+        "description": "The Survey Ship is a larger, more sophisticated version of the Scout class, developed by Frontier Enterprises specifically for the Frontier Sector's unique challenges. These vessels carry advanced scientific equipment and powerful scanning arrays that can provide detailed information about resource composition and potential hazards. Their increased size allows for better living conditions during long survey missions, making them ideal for deep-space exploration and resource assessment. The current model features advanced life support systems from Terraforming Solutions and resource analysis equipment from Stellar Resources.",
+        "size": 2,
+        "stats": {
+          "speed": 90,
+          "armor": 15,
+          "shields": 0,
+          "weapons": 0,
+          "health": 80,
+          "max_health": 80,
+          "evasion": 40,
+          "scan_strength": 100,
+          "range": 2000
+        },
+        "slots": {
+          "weapon": 2,
+          "utility": 5
+        },
+        "costs": {
+          "credits": 25000,
+          "cobaltite": 50,
+          "vanadium": 30,
+          "chromium": 20,
+          "molybdenum": 15
+        },
+        "crew": {
+          "min": 5,
+          "max": 5
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 250,
+        "construction_time": 50
+      },
+      "freighter": {
+        "name": "Freighter",
+        "class": "Medium",
+        "role": "Resource transportation",
+        "description": "The Freighter class represents the backbone of interstellar commerce, developed by Galactic Industries in partnership with Stellar Resources. These vessels were designed with one primary purpose: to efficiently transport resources between colonies and trading hubs. Their robust construction and large cargo holds make them perfect for long-distance hauling operations. While they're not designed for combat, their high durability and decent speed make them reliable workhorses for any corporation's logistics operations. The current model incorporates advanced cargo handling systems from Stellar Resources and efficient propulsion technology from Galactic Industries.",
+        "size": 2,
+        "stats": {
+          "speed": 60,
+          "armor": 10,
+          "shields": 0,
+          "weapons": 0,
+          "health": 150,
+          "max_health": 150,
+          "evasion": 20,
+          "scan_strength": 20,
+          "range": 2500
+        },
+        "slots": {
+          "weapon": 1,
+          "utility": 3
+        },
+        "costs": {
+          "credits": 35000,
+          "cobaltite": 70,
+          "vanadium": 45,
+          "chromium": 30
+        },
+        "crew": {
+          "min": 4,
+          "max": 4
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 200,
+        "construction_time": 60
+      },
+      "coloniser": {
+        "name": "Coloniser",
+        "class": "Medium",
+        "role": "Colony establishment",
+        "description": "The Coloniser class represents humanity's ambition to expand beyond Earth, developed by Terraforming Solutions with support from all major corporations. These massive vessels are essentially mobile colonies, carrying all the necessary equipment and personnel to establish a new settlement. Once deployed, they transform into the colony's initial base building, providing the foundation for future expansion. Their high durability and specialized equipment make them perfect for establishing footholds in new star systems. The current model features advanced life support systems from Terraforming Solutions, resource processing equipment from Stellar Resources, and defensive systems from Nova Dynamics.",
+        "size": 2,
+        "stats": {
+          "speed": 50,
+          "armor": 20,
+          "shields": 0,
+          "weapons": 0,
+          "health": 200,
+          "max_health": 200,
+          "evasion": 10,
+          "scan_strength": 30,
+          "range": 1500
+        },
+        "slots": {
+          "weapon": 0,
+          "utility": 0
+        },
+        "costs": {
+          "credits": 75000,
+          "cobaltite": 150,
+          "vanadium": 100,
+          "chromium": 75,
+          "molybdenum": 50,
+          "rhenium": 35
+        },
+        "crew": {
+          "min": 10,
+          "max": 10
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 300,
+        "construction_time": 90
+      },
+      "destroyer": {
+        "name": "Destroyer",
+        "class": "Medium",
+        "role": "Flexible combat vessel",
+        "description": "The Destroyer class represents a balanced approach to space combat, developed by Nova Dynamics in response to the need for versatile combat vessels during the Corporate Wars. These vessels combine decent firepower with good maneuverability, making them perfect for a variety of missions. Their moderate size and flexible design allow them to adapt to different combat situations, from escort duty to fleet engagements. While they may not excel in any particular aspect, their well-rounded capabilities make them reliable assets in any fleet. The current model features advanced weapon systems from Nova Dynamics and efficient propulsion technology from Galactic Industries.",
+        "size": 2,
+        "stats": {
+          "speed": 85,
+          "armor": 15,
+          "shields": 0,
+          "weapons": 0,
+          "health": 120,
+          "max_health": 120,
+          "evasion": 40,
+          "scan_strength": 35,
+          "range": 1800
+        },
+        "slots": {
+          "weapon": 2,
+          "utility": 2
+        },
+        "costs": {
+          "credits": 50000,
+          "cobaltite": 100,
+          "vanadium": 60,
+          "chromium": 40,
+          "molybdenum": 30
+        },
+        "crew": {
+          "min": 6,
+          "max": 6
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 250,
+        "construction_time": 75
+      },
+      "frigate": {
+        "name": "Frigate",
+        "class": "Medium",
+        "role": "Balanced combat vessel",
+        "description": "Balanced combat vessel with good firepower and mobility",
+        "size": 2,
+        "stats": {
+          "speed": 250,
+          "armor": 100,
+          "shields": 80,
+          "weapons": 120,
+          "health": 200,
+          "max_health": 200,
+          "evasion": 0,
+          "scan_strength": 0,
+          "range": 0
+        },
+        "slots": {
+          "weapon": 0,
+          "utility": 0
+        },
+        "costs": {
+          "credits": 25000,
+          "cobaltite": 250,
+          "vanadium": 175,
+          "chromium": 125
+        },
+        "crew": {
+          "min": 10,
+          "max": 20
+        },
+        "consumption": {
+          "power": 50,
+          "supplies": 25
+        },
+        "daily_maintenance": 0,
+        "construction_time": 65
+      }
+    },
+    "large": {
+      "cruiser": {
+        "name": "Cruiser",
+        "class": "Large",
+        "role": "Medium combat vessel",
+        "description": "The Cruiser class represents a scaled-down version of the mighty Battleship, developed by Nova Dynamics as a more cost-effective alternative for fleet operations. These vessels pack significant firepower and armor into a more manageable frame, making them perfect for fleet operations where a full-sized Battleship would be impractical. Their balanced design and moderate size make them excellent command vessels for smaller task forces, while still maintaining the ability to engage in heavy combat when necessary. The current model incorporates advanced combat systems from Nova Dynamics, reinforced armor from Stellar Resources, and command systems from Galactic Industries.",
+        "size": 4,
+        "stats": {
+          "speed": 70,
+          "armor": 25,
+          "shields": 0,
+          "weapons": 0,
+          "health": 180,
+          "max_health": 180,
+          "evasion": 25,
+          "scan_strength": 45,
+          "range": 2200
+        },
+        "slots": {
+          "weapon": 4,
+          "utility": 4
+        },
+        "costs": {
+          "credits": 150000,
+          "cobaltite": 300,
+          "vanadium": 200,
+          "chromium": 150,
+          "molybdenum": 100,
+          "rhenium": 75
+        },
+        "crew": {
+          "min": 12,
+          "max": 12
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 400,
+        "construction_time": 120
+      },
+      "battleship": {
+        "name": "Battleship",
+        "class": "Large",
+        "role": "Heavy combat vessel",
+        "description": "The Battleship class represents the pinnacle of human military engineering, developed by Nova Dynamics with contributions from all major corporations. These massive vessels were first deployed during the Corporate Wars of the 24th century, where they proved decisive in several key battles. Their thick armor and powerful weapons make them nearly impervious to smaller vessels, while their advanced sensor arrays allow them to engage targets at extreme ranges. While they lack the carrier capacity of dedicated carriers, they can still field a small complement of fighters for additional combat flexibility. The current model features advanced weapon systems from Nova Dynamics, reinforced armor from Stellar Resources, and advanced life support from Terraforming Solutions.",
+        "size": 6,
+        "stats": {
+          "speed": 50,
+          "armor": 40,
+          "shields": 0,
+          "weapons": 0,
+          "health": 300,
+          "max_health": 300,
+          "evasion": 15,
+          "scan_strength": 70,
+          "range": 3000
+        },
+        "slots": {
+          "weapon": 6,
+          "utility": 6
+        },
+        "fighter_capacity": 4,
+        "costs": {
+          "credits": 300000,
+          "cobaltite": 600,
+          "vanadium": 400,
+          "chromium": 300,
+          "molybdenum": 200,
+          "rhenium": 150,
+          "osmium": 100
+        },
+        "crew": {
+          "min": 20,
+          "max": 20
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 600,
+        "construction_time": 180
+      },
+      "carrier": {
+        "name": "Carrier",
+        "class": "Large",
+        "role": "Fleet command and fighter deployment",
+        "description": "The Carrier class represents a different approach to space combat, developed by Galactic Industries in partnership with Nova Dynamics. These massive vessels are designed not for direct combat, but for projecting power through their complement of smaller ships. Their extensive hangar facilities and advanced command systems allow them to coordinate large numbers of fighters and bombers in combat. While they carry fewer weapons than battleships, their thick armor and powerful sensor arrays make them formidable command vessels in their own right. The current model features advanced hangar systems from Galactic Industries, defensive systems from Nova Dynamics, and advanced life support from Terraforming Solutions.",
+        "size": 8,
+        "stats": {
+          "speed": 45,
+          "armor": 50,
+          "shields": 0,
+          "weapons": 0,
+          "health": 400,
+          "max_health": 400,
+          "evasion": 10,
+          "scan_strength": 90,
+          "range": 3500
+        },
+        "slots": {
+          "weapon": 3,
+          "utility": 8
+        },
+        "fighter_capacity": 12,
+        "costs": {
+          "credits": 500000,
+          "cobaltite": 1000,
+          "vanadium": 700,
+          "chromium": 500,
+          "molybdenum": 350,
+          "rhenium": 250,
+          "osmium": 150
+        },
+        "crew": {
+          "min": 30,
+          "max": 30
+        },
+        "consumption": {
+          "power": 0,
+          "supplies": 0
+        },
+        "daily_maintenance": 800,
+        "construction_time": 150
+      }
+    }
+  }
+}

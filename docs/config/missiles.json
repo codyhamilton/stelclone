@@ -1,0 +1,212 @@
+{
+    "missiles": {
+        "basic": {
+            "thunderbolt": {
+                "name": "Thunderbolt",
+                "description": "Basic anti-ship missile with conventional warhead",
+                "stats": {
+                    "damage": 50,
+                    "range": 2000,
+                    "speed": 300,
+                    "accuracy": 85
+                },
+                "costs": {
+                    "credits": 500,
+                    "cobaltite": 5,
+                    "vanadium": 3
+                },
+                "build_requirements": {
+                    "credits": 500,
+                    "cobaltite": 5,
+                    "vanadium": 3
+                }
+            },
+            "hellfire": {
+                "name": "Hellfire",
+                "description": "Enhanced explosive payload for increased damage",
+                "stats": {
+                    "damage": 75,
+                    "range": 1800,
+                    "speed": 280,
+                    "accuracy": 80
+                },
+                "costs": {
+                    "credits": 750,
+                    "cobaltite": 8,
+                    "vanadium": 5,
+                    "chromium": 3
+                },
+                "build_requirements": {
+                    "credits": 750,
+                    "cobaltite": 8,
+                    "vanadium": 5,
+                    "chromium": 3
+                }
+            },
+            "lightning_strike": {
+                "name": "Lightning Strike",
+                "description": "High-speed missile for quick strikes",
+                "stats": {
+                    "damage": 40,
+                    "range": 1500,
+                    "speed": 400,
+                    "accuracy": 85
+                },
+                "costs": {
+                    "credits": 600,
+                    "cobaltite": 6,
+                    "vanadium": 4,
+                    "chromium": 2
+                },
+                "build_requirements": {
+                    "credits": 600,
+                    "cobaltite": 6,
+                    "vanadium": 4,
+                    "chromium": 2
+                }
+            }
+        },
+        "advanced": {
+            "dragons_fang": {
+                "name": "Dragon's Fang",
+                "description": "Specialized anti-ship missile with armor-piercing capabilities",
+                "stats": {
+                    "damage": 100,
+                    "range": 2500,
+                    "speed": 350,
+                    "accuracy": 90,
+                    "armor_penetration": 50
+                },
+                "costs": {
+                    "credits": 1500,
+                    "cobaltite": 15,
+                    "vanadium": 10,
+                    "chromium": 8,
+                    "molybdenum": 5
+                },
+                "build_requirements": {
+                    "credits": 1500,
+                    "cobaltite": 15,
+                    "vanadium": 10,
+                    "chromium": 8,
+                    "molybdenum": 5
+                },
+                "blueprint": {
+                    "name": "Dragon's Fang",
+                    "manufacturer": "Nova Dynamics",
+                    "history": "Developed during the Corporate Wars, this missile was designed specifically for penetrating ship armor. The warhead incorporates advanced shaped-charge technology that focuses the explosive force into a narrow beam.",
+                    "development": "The key innovation is the missile's dual-stage warhead system. The first stage creates a breach in the target's armor, while the second stage delivers the main payload through the opening. This design proved particularly effective against the heavily armored ships of rival corporations.",
+                    "cost": {
+                        "credits": 20000
+                    }
+                }
+            },
+            "hydra": {
+                "name": "Hydra",
+                "description": "Missile that splits into multiple smaller warheads",
+                "stats": {
+                    "damage": 120,
+                    "range": 2200,
+                    "speed": 300,
+                    "accuracy": 85,
+                    "sub_munitions": 6,
+                    "sub_munition_damage": 20
+                },
+                "costs": {
+                    "credits": 2000,
+                    "cobaltite": 20,
+                    "vanadium": 15,
+                    "chromium": 10,
+                    "molybdenum": 8
+                },
+                "build_requirements": {
+                    "credits": 2000,
+                    "cobaltite": 20,
+                    "vanadium": 15,
+                    "chromium": 10,
+                    "molybdenum": 8
+                },
+                "blueprint": {
+                    "name": "Hydra",
+                    "manufacturer": "Nova Dynamics",
+                    "history": "The Cluster Missile was developed as a response to the increasing use of point-defense systems. By splitting into multiple warheads, it can overwhelm defensive systems and strike multiple targets simultaneously.",
+                    "development": "The missile features a sophisticated guidance system that can coordinate the sub-munitions to strike different targets or focus on a single target from multiple angles. The sub-munitions are equipped with their own propulsion and targeting systems.",
+                    "cost": {
+                        "credits": 25000
+                    }
+                }
+            },
+            "leviathan": {
+                "name": "Leviathan",
+                "description": "Long-range missile designed for planetary bombardment",
+                "stats": {
+                    "damage": 200,
+                    "range": 4000,
+                    "speed": 250,
+                    "accuracy": 90
+                },
+                "costs": {
+                    "credits": 3000,
+                    "cobaltite": 30,
+                    "vanadium": 20,
+                    "chromium": 15,
+                    "molybdenum": 10,
+                    "rhenium": 5
+                },
+                "build_requirements": {
+                    "credits": 3000,
+                    "cobaltite": 30,
+                    "vanadium": 20,
+                    "chromium": 15,
+                    "molybdenum": 10,
+                    "rhenium": 5
+                },
+                "blueprint": {
+                    "name": "Leviathan",
+                    "manufacturer": "Galactic Industries",
+                    "history": "Originally designed for asteroid mining operations, this missile was adapted for military use. Its large payload and extended range make it ideal for strategic strikes against fortified positions.",
+                    "development": "The missile incorporates advanced propulsion systems that allow it to maintain high velocity over long distances. The warhead is designed to penetrate deep into planetary surfaces or asteroid structures before detonating.",
+                    "cost": {
+                        "credits": 35000
+                    }
+                }
+            },
+            "ghost_in_the_machine": {
+                "name": "Ghost in the Machine",
+                "description": "Electronic warfare missile that disables ship systems",
+                "stats": {
+                    "damage": 0,
+                    "range": 1800,
+                    "speed": 320,
+                    "accuracy": 85,
+                    "systems_damage": true
+                },
+                "costs": {
+                    "credits": 2500,
+                    "cobaltite": 25,
+                    "vanadium": 15,
+                    "chromium": 12,
+                    "molybdenum": 8,
+                    "rhenium": 6
+                },
+                "build_requirements": {
+                    "credits": 2500,
+                    "cobaltite": 25,
+                    "vanadium": 15,
+                    "chromium": 12,
+                    "molybdenum": 8,
+                    "rhenium": 6
+                },
+                "blueprint": {
+                    "name": "Ghost in the Machine",
+                    "manufacturer": "Galactic Industries",
+                    "history": "Developed as a non-lethal alternative for corporate disputes, the EMP Missile quickly became a valuable tool for disabling enemy ships without destroying them.",
+                    "development": "The missile generates a powerful electromagnetic pulse that can temporarily disable electronic systems within its radius. The effect is particularly effective against ships with advanced electronic systems.",
+                    "cost": {
+                        "credits": 30000
+                    }
+                }
+            }
+        }
+    }
+} 

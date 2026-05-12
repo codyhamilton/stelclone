@@ -1,0 +1,2245 @@
+{
+  "building_categories": {
+    "habitation": {
+      "habitat": {
+        "basic": {
+          "name": "Basic Habitat Module",
+          "description": "Prefabricated living quarters providing minimal comfort. Workers tolerate these spartan conditions but morale suffers over extended deployments.",
+          "grid_size": [2, 2],
+          "power_usage": 10,
+          "staff_required": 2,
+          "maintenance_cost": 100,
+          "construction_time": 30,
+          "build_cost": {
+            "credits": 5000,
+            "cobaltite": 20,
+            "vanadium": 10
+          },
+          "stats": {
+            "capacity": 10,
+            "comfort": 40,
+            "morale_modifier": -5
+          },
+          "structural": {
+            "max_health": 100,
+            "armor": 5
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-HAB-1 was Terraforming Solutions' first mass-produced habitat module, designed during the initial colonial expansion of the 23rd century. Billions have been deployed across human space.",
+            "design_notes": "Prioritizes rapid deployment and low cost over comfort. The modular design allows quick assembly but the thin walls provide minimal insulation from the cold of space."
+          }
+        },
+        "standard": {
+          "name": "Standard Habitat Complex",
+          "description": "Comfortable living quarters with improved environmental controls and private quarters. The standard choice for established colonies.",
+          "grid_size": [2, 2],
+          "power_usage": 15,
+          "staff_required": 3,
+          "maintenance_cost": 180,
+          "construction_time": 45,
+          "build_cost": {
+            "credits": 12000,
+            "cobaltite": 45,
+            "vanadium": 30,
+            "chromium": 15
+          },
+          "stats": {
+            "capacity": 15,
+            "comfort": 65,
+            "morale_modifier": 0
+          },
+          "structural": {
+            "max_health": 150,
+            "armor": 10
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-HAB-2 series evolved from worker feedback during the Outer Rim colonization. Terraforming Solutions invested heavily in acoustic dampening and thermal regulation after productivity studies showed direct correlation with living conditions.",
+            "design_notes": "Balances cost efficiency with habitability. Features improved air filtration and sound insulation between quarters."
+          }
+        },
+        "luxury": {
+          "name": "Luxury Habitat Suite",
+          "description": "Premium accommodations featuring private facilities, entertainment systems, and simulated natural environments. Reserved for senior staff and high-value personnel.",
+          "grid_size": [3, 3],
+          "power_usage": 25,
+          "staff_required": 5,
+          "maintenance_cost": 350,
+          "construction_time": 90,
+          "build_cost": {
+            "credits": 35000,
+            "cobaltite": 120,
+            "vanadium": 80,
+            "chromium": 50,
+            "rhenium": 20
+          },
+          "stats": {
+            "capacity": 12,
+            "comfort": 95,
+            "morale_modifier": 15
+          },
+          "structural": {
+            "max_health": 200,
+            "armor": 15
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": true,
+          "lore": {
+            "history": "Originally designed for Terraforming Solutions executive retreats, the TS-HAB-LUX became essential for retaining skilled engineers and scientists in remote postings. The psychological benefits of the simulated sky ceiling alone justified the expense.",
+            "design_notes": "Features holographic windows displaying real-time planetary vistas, hydroponic gardens, and premium recycled air with adjustable aromatics."
+          }
+        }
+      },
+      "leisure": {
+        "cantina": {
+          "name": "Worker Cantina",
+          "description": "Basic recreation facility with communal dining area and simple entertainment options. Provides essential social space for colony workers.",
+          "grid_size": [2, 2],
+          "power_usage": 8,
+          "staff_required": 3,
+          "maintenance_cost": 120,
+          "construction_time": 25,
+          "build_cost": {
+            "credits": 6000,
+            "cobaltite": 25,
+            "vanadium": 15
+          },
+          "stats": {
+            "morale_boost": 5,
+            "capacity": 30,
+            "entertainment_value": 25
+          },
+          "structural": {
+            "max_health": 80,
+            "armor": 5
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-CANT series emerged from corporate studies showing that workers without social spaces had 40% higher turnover rates. Even basic amenities dramatically improved retention.",
+            "design_notes": "Designed for high traffic and easy cleaning. Durable furniture and spill-resistant surfaces are standard features."
+          }
+        },
+        "recreation_hub": {
+          "name": "Recreation Hub",
+          "description": "Multi-purpose facility featuring exercise equipment, VR entertainment pods, and social gathering spaces. Significantly improves worker satisfaction.",
+          "grid_size": [2, 3],
+          "power_usage": 18,
+          "staff_required": 5,
+          "maintenance_cost": 220,
+          "construction_time": 50,
+          "build_cost": {
+            "credits": 18000,
+            "cobaltite": 60,
+            "vanadium": 40,
+            "chromium": 25
+          },
+          "stats": {
+            "morale_boost": 12,
+            "capacity": 50,
+            "entertainment_value": 55
+          },
+          "structural": {
+            "max_health": 120,
+            "armor": 8
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "Developed after the Ceres Station riots of 2456, when workers protested unbearable living conditions. The Recreation Hub became mandatory on all corporate installations exceeding 100 workers.",
+            "design_notes": "Includes zero-G exercise chambers, neural-link entertainment systems, and dedicated quiet zones for meditation."
+          }
+        },
+        "entertainment_center": {
+          "name": "Entertainment Center",
+          "description": "State-of-the-art facility with immersive simulation chambers, live performance spaces, and premium dining. A morale cornerstone for large colonies.",
+          "grid_size": [3, 3],
+          "power_usage": 35,
+          "staff_required": 10,
+          "maintenance_cost": 450,
+          "construction_time": 80,
+          "build_cost": {
+            "credits": 45000,
+            "cobaltite": 150,
+            "vanadium": 100,
+            "chromium": 60,
+            "rhenium": 25
+          },
+          "stats": {
+            "morale_boost": 25,
+            "capacity": 100,
+            "entertainment_value": 90
+          },
+          "structural": {
+            "max_health": 180,
+            "armor": 12
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The Crown Jewel series was Terraforming Solutions' response to luxury cruise ship designs adapted for permanent installations. The first unit on Titan Station became legendary for hosting the 2589 Solar Championship finals.",
+            "design_notes": "Features full sensory immersion theaters, rotating restaurant with panoramic viewports, and facilities for both athletic and artistic pursuits."
+          }
+        }
+      },
+      "medical": {
+        "field_station": {
+          "name": "Field Medical Station",
+          "description": "Basic medical facility for treating injuries and common ailments. Provides essential healthcare but limited surgical capability.",
+          "grid_size": [2, 2],
+          "power_usage": 12,
+          "staff_required": 4,
+          "maintenance_cost": 150,
+          "construction_time": 35,
+          "build_cost": {
+            "credits": 8000,
+            "cobaltite": 30,
+            "vanadium": 20,
+            "chromium": 10
+          },
+          "stats": {
+            "healing_rate": 5,
+            "capacity": 8,
+            "medical_quality": 40
+          },
+          "structural": {
+            "max_health": 100,
+            "armor": 8
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-MED-F1 was rushed into production during the Frontier Rush of 2650 when mining accidents overwhelmed existing medical infrastructure. Its modular design allows rapid deployment to new colonies.",
+            "design_notes": "Equipped with auto-diagnostic systems and basic surgical suite. Designed for stabilization and triage rather than long-term care."
+          }
+        },
+        "clinic": {
+          "name": "Medical Clinic",
+          "description": "Full-service medical facility with diagnostic imaging, surgical suites, and rehabilitation equipment. Handles most medical emergencies.",
+          "grid_size": [2, 3],
+          "power_usage": 25,
+          "staff_required": 8,
+          "maintenance_cost": 300,
+          "construction_time": 60,
+          "build_cost": {
+            "credits": 25000,
+            "cobaltite": 80,
+            "vanadium": 55,
+            "chromium": 35,
+            "molybdenum": 15
+          },
+          "stats": {
+            "healing_rate": 12,
+            "capacity": 20,
+            "medical_quality": 70
+          },
+          "structural": {
+            "max_health": 160,
+            "armor": 12
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-MED-C series represents Terraforming Solutions' commitment to worker welfare - or at least, their legal obligation to maintain minimum healthcare standards. The design has been refined over centuries of frontier deployment.",
+            "design_notes": "Features automated surgical assistance, regenerative therapy chambers, and quarantine-capable isolation wards."
+          }
+        },
+        "hospital": {
+          "name": "Colony Hospital",
+          "description": "Comprehensive medical complex with advanced treatment capabilities, research facilities, and long-term care wards. Can handle any medical situation.",
+          "grid_size": [3, 3],
+          "power_usage": 45,
+          "staff_required": 15,
+          "maintenance_cost": 550,
+          "construction_time": 120,
+          "build_cost": {
+            "credits": 65000,
+            "cobaltite": 200,
+            "vanadium": 140,
+            "chromium": 90,
+            "molybdenum": 40,
+            "rhenium": 20
+          },
+          "stats": {
+            "healing_rate": 25,
+            "capacity": 50,
+            "medical_quality": 95
+          },
+          "structural": {
+            "max_health": 250,
+            "armor": 18
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The TS-MED-H1 Hospital Complex was originally designed for terraforming base camps where evacuating patients was impossible. It has since become the gold standard for frontier medical care.",
+            "design_notes": "Includes cloning-assisted organ regeneration, neural repair facilities, and cryogenic preservation for cases requiring Earth-side treatment."
+          }
+        }
+      }
+    },
+    "life_support": {
+      "oxygen_processor": {
+        "basic": {
+          "name": "Basic Oxygen Processor",
+          "description": "Standard atmospheric processing unit that extracts oxygen from ice and recycled air. Reliable but power-hungry.",
+          "grid_size": [2, 2],
+          "power_usage": 15,
+          "staff_required": 2,
+          "maintenance_cost": 150,
+          "construction_time": 30,
+          "build_cost": {
+            "credits": 8000,
+            "cobaltite": 30,
+            "vanadium": 15
+          },
+          "stats": {
+            "oxygen_output": 20,
+            "efficiency": 60,
+            "population_supported": 25
+          },
+          "structural": {
+            "max_health": 120,
+            "armor": 10
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-OXY-1 has been the backbone of colonial life support for three centuries. Its simple, robust design means spare parts are available everywhere in human space.",
+            "design_notes": "Uses electrolysis and carbon scrubbing in a dual-stage process. The distinctive humming sound has become synonymous with space habitation."
+          }
+        },
+        "efficient": {
+          "name": "Efficient Oxygen Processor",
+          "description": "Optimized atmospheric processor with improved power consumption and lower maintenance requirements. Ideal for resource-constrained colonies.",
+          "grid_size": [2, 2],
+          "power_usage": 10,
+          "staff_required": 2,
+          "maintenance_cost": 100,
+          "construction_time": 40,
+          "build_cost": {
+            "credits": 15000,
+            "cobaltite": 50,
+            "vanadium": 30,
+            "chromium": 20
+          },
+          "stats": {
+            "oxygen_output": 18,
+            "efficiency": 85,
+            "population_supported": 22
+          },
+          "structural": {
+            "max_health": 130,
+            "armor": 12
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "Developed after the Proxima Power Crisis when colonies learned the hard way about energy dependency. The TS-OXY-E trades raw output for dramatically reduced power draw.",
+            "design_notes": "Features advanced membrane technology that reduces energy requirements by 35% while maintaining output quality."
+          }
+        },
+        "advanced": {
+          "name": "Advanced Oxygen Processor",
+          "description": "High-capacity atmospheric system with redundant processing chains and exceptional output. Essential for large populations.",
+          "grid_size": [3, 3],
+          "power_usage": 25,
+          "staff_required": 3,
+          "maintenance_cost": 300,
+          "construction_time": 70,
+          "build_cost": {
+            "credits": 35000,
+            "cobaltite": 100,
+            "vanadium": 70,
+            "chromium": 45,
+            "molybdenum": 25,
+            "rhenium": 15
+          },
+          "stats": {
+            "oxygen_output": 50,
+            "efficiency": 80,
+            "population_supported": 65
+          },
+          "structural": {
+            "max_health": 200,
+            "armor": 18
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The TS-OXY-ADV represents the pinnacle of atmospheric processing technology. Originally designed for terraforming projects, it was adapted for large-scale colonial installations.",
+            "design_notes": "Triple-redundant processing ensures continuous operation. The system can detect and compensate for atmospheric contamination automatically."
+          }
+        }
+      },
+      "water_processor": {
+        "basic": {
+          "name": "Basic Water Processor",
+          "description": "Standard water recycling and purification system. Processes waste water and extracts moisture from ice deposits.",
+          "grid_size": [2, 2],
+          "power_usage": 15,
+          "staff_required": 2,
+          "maintenance_cost": 150,
+          "construction_time": 30,
+          "build_cost": {
+            "credits": 8000,
+            "cobaltite": 30,
+            "molybdenum": 15
+          },
+          "stats": {
+            "water_output": 20,
+            "efficiency": 60,
+            "population_supported": 25
+          },
+          "structural": {
+            "max_health": 120,
+            "armor": 10
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-H2O-1 evolved from submarine recycling technology, adapted for the closed environments of space habitation. Every drop of water in a colony passes through these systems dozens of times.",
+            "design_notes": "Multi-stage filtration removes contaminants down to the molecular level. The taste may vary but the water is always safe."
+          }
+        },
+        "efficient": {
+          "name": "Efficient Water Processor",
+          "description": "Optimized water recycling with minimal power draw and reduced maintenance. Achieves near-perfect water recovery rates.",
+          "grid_size": [2, 2],
+          "power_usage": 10,
+          "staff_required": 2,
+          "maintenance_cost": 100,
+          "construction_time": 40,
+          "build_cost": {
+            "credits": 15000,
+            "cobaltite": 50,
+            "vanadium": 25,
+            "molybdenum": 30
+          },
+          "stats": {
+            "water_output": 18,
+            "efficiency": 92,
+            "population_supported": 22
+          },
+          "structural": {
+            "max_health": 130,
+            "armor": 12
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-H2O-E was developed for deep space missions where ice resupply was uncertain. Its 98% recovery rate became the industry standard for efficient operations.",
+            "design_notes": "Uses reverse osmosis combined with UV sterilization. The system self-cleans, reducing maintenance intervals significantly."
+          }
+        },
+        "advanced": {
+          "name": "Advanced Water Processor",
+          "description": "High-capacity water management system with built-in reservoirs and atmospheric moisture extraction. Supports large populations with ease.",
+          "grid_size": [3, 3],
+          "power_usage": 25,
+          "staff_required": 3,
+          "maintenance_cost": 300,
+          "construction_time": 70,
+          "build_cost": {
+            "credits": 35000,
+            "cobaltite": 100,
+            "vanadium": 60,
+            "molybdenum": 50,
+            "rhenium": 15
+          },
+          "stats": {
+            "water_output": 50,
+            "efficiency": 85,
+            "population_supported": 65
+          },
+          "structural": {
+            "max_health": 200,
+            "armor": 18
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": true,
+          "lore": {
+            "history": "Originally designed for Mars colonization efforts, the TS-H2O-ADV can extract water from virtually any source including regolith and atmospheric moisture.",
+            "design_notes": "Includes emergency reservoir capacity for 72 hours of autonomous operation. The extraction system can process ice faster than most mines can deliver it."
+          }
+        }
+      },
+      "food_production": {
+        "aeroponics_bay": {
+          "name": "Aeroponics Bay",
+          "description": "Compact food production facility using misted nutrient delivery. Grows basic vegetables and protein supplements.",
+          "grid_size": [2, 2],
+          "power_usage": 20,
+          "staff_required": 3,
+          "maintenance_cost": 200,
+          "construction_time": 40,
+          "build_cost": {
+            "credits": 10000,
+            "cobaltite": 40,
+            "vanadium": 20,
+            "chromium": 15
+          },
+          "stats": {
+            "food_output": 15,
+            "variety": 30,
+            "population_supported": 20
+          },
+          "structural": {
+            "max_health": 100,
+            "armor": 6
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-FOOD-A1 brought fresh vegetables to frontier colonies for the first time. Before its introduction, workers subsisted on nutrient paste and preserved rations.",
+            "design_notes": "Vertical growing racks maximize space efficiency. The misting system uses 90% less water than traditional hydroponics."
+          }
+        },
+        "hydroponics_farm": {
+          "name": "Hydroponics Farm",
+          "description": "Full-scale food production facility with diverse crop capability. Provides nutritious meals and improves colony morale.",
+          "grid_size": [3, 3],
+          "power_usage": 35,
+          "staff_required": 5,
+          "maintenance_cost": 400,
+          "construction_time": 65,
+          "build_cost": {
+            "credits": 28000,
+            "cobaltite": 100,
+            "vanadium": 60,
+            "chromium": 40,
+            "molybdenum": 25
+          },
+          "stats": {
+            "food_output": 35,
+            "variety": 65,
+            "population_supported": 45
+          },
+          "structural": {
+            "max_health": 150,
+            "armor": 10
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The TS-FOOD-H2 represents decades of agricultural research adapted for space. Its ability to grow grain crops transformed colonial cuisine from survival to sustainability.",
+            "design_notes": "Automated climate zones allow simultaneous cultivation of crops with different requirements. Fish tanks provide protein and fertilizer."
+          }
+        },
+        "biosynth_complex": {
+          "name": "Biosynth Complex",
+          "description": "Advanced food production using cellular agriculture and synthetic biology. Produces meat, dairy, and luxury foods without traditional farming.",
+          "grid_size": [4, 4],
+          "power_usage": 55,
+          "staff_required": 8,
+          "maintenance_cost": 650,
+          "construction_time": 100,
+          "build_cost": {
+            "credits": 75000,
+            "cobaltite": 220,
+            "vanadium": 150,
+            "chromium": 100,
+            "molybdenum": 60,
+            "rhenium": 30
+          },
+          "stats": {
+            "food_output": 70,
+            "variety": 95,
+            "population_supported": 90
+          },
+          "structural": {
+            "max_health": 220,
+            "armor": 15
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The TS-FOOD-BIO sparked controversy when first introduced - some called it 'playing god' while others praised ending reliance on Earth's food supply. Today it's essential for self-sufficient colonies.",
+            "design_notes": "Cellular cultivation vats produce real meat from starter cultures. The flavor library includes thousands of Earth recipes plus colonial innovations."
+          }
+        }
+      },
+      "emergency_stores": {
+        "standard": {
+          "name": "Emergency Supply Cache",
+          "description": "Sealed storage facility for emergency life support supplies. Provides backup resources during crises.",
+          "grid_size": [2, 2],
+          "power_usage": 5,
+          "staff_required": 1,
+          "maintenance_cost": 80,
+          "construction_time": 20,
+          "build_cost": {
+            "credits": 6000,
+            "cobaltite": 25,
+            "vanadium": 15,
+            "chromium": 10
+          },
+          "stats": {
+            "food_reserve_days": 30,
+            "water_reserve_days": 30,
+            "oxygen_reserve_days": 30,
+            "capacity": 500
+          },
+          "structural": {
+            "max_health": 150,
+            "armor": 15
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": false,
+          "lore": {
+            "history": "Mandated by the Colonial Safety Act of 2589 after the Ganymede Disaster, when a life support failure killed 3,000 colonists. Every installation must maintain minimum emergency reserves.",
+            "design_notes": "Self-contained with independent power. Sealed compartments prevent contamination and allow partial access during emergencies."
+          }
+        },
+        "hardened": {
+          "name": "Hardened Emergency Bunker",
+          "description": "Heavily reinforced emergency supply storage designed to survive attacks and disasters. The last line of defense for colony survival.",
+          "grid_size": [2, 2],
+          "power_usage": 8,
+          "staff_required": 2,
+          "maintenance_cost": 150,
+          "construction_time": 45,
+          "build_cost": {
+            "credits": 18000,
+            "cobaltite": 80,
+            "vanadium": 50,
+            "chromium": 40,
+            "osmium": 20
+          },
+          "stats": {
+            "food_reserve_days": 60,
+            "water_reserve_days": 60,
+            "oxygen_reserve_days": 60,
+            "capacity": 800
+          },
+          "structural": {
+            "max_health": 400,
+            "armor": 40
+          },
+          "manufacturer": "terraforming_solutions",
+          "blueprint_required": true,
+          "lore": {
+            "history": "Developed after K'thari raids destroyed conventional storage facilities during the Border Conflicts. The hardened design can withstand direct weapons fire.",
+            "design_notes": "Buried installation with blast doors rated for nuclear near-misses. Independent recycling system can sustain 50 people for 90 days."
+          }
+        }
+      }
+    },
+    "power": {
+      "solar_array": {
+        "compact": {
+          "name": "Compact Solar Panel",
+          "description": "Small, deployable solar power unit. Quick to install but limited output. Ideal for initial colony establishment.",
+          "grid_size": [1, 1],
+          "power_output": 15,
+          "power_usage": 0,
+          "staff_required": 1,
+          "maintenance_cost": 50,
+          "construction_time": 10,
+          "build_cost": {
+            "credits": 2000,
+            "cobaltite": 10,
+            "vanadium": 5
+          },
+          "stats": {
+            "efficiency": 70,
+            "reliability": 85
+          },
+          "structural": {
+            "max_health": 50,
+            "armor": 2
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The FE-SOL-C was designed for exploration teams needing quick power solutions. Its snap-deploy design became legendary among scouts and survey crews.",
+            "design_notes": "Foldable panels deploy in under an hour. The small footprint makes it perfect for tight asteroid surfaces."
+          }
+        },
+        "standard": {
+          "name": "Standard Solar Array",
+          "description": "Reliable solar power generation with good output-to-cost ratio. The workhorse of colonial power infrastructure.",
+          "grid_size": [2, 2],
+          "power_output": 50,
+          "power_usage": 0,
+          "staff_required": 2,
+          "maintenance_cost": 120,
+          "construction_time": 25,
+          "build_cost": {
+            "credits": 6000,
+            "cobaltite": 30,
+            "vanadium": 20
+          },
+          "stats": {
+            "efficiency": 80,
+            "reliability": 90
+          },
+          "structural": {
+            "max_health": 80,
+            "armor": 5
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The FE-SOL-S has powered more colonies than any other single piece of equipment. Its proven design has remained largely unchanged for two centuries.",
+            "design_notes": "Self-tracking panels follow the sun automatically. Dust-resistant coating reduces maintenance in asteroid environments."
+          }
+        },
+        "large_array": {
+          "name": "Large Solar Array",
+          "description": "High-capacity solar installation with advanced tracking and energy conversion. Powers major industrial operations.",
+          "grid_size": [3, 3],
+          "power_output": 120,
+          "power_usage": 0,
+          "staff_required": 3,
+          "maintenance_cost": 250,
+          "construction_time": 50,
+          "build_cost": {
+            "credits": 18000,
+            "cobaltite": 80,
+            "vanadium": 50,
+            "chromium": 30,
+            "rhenium": 10
+          },
+          "stats": {
+            "efficiency": 92,
+            "reliability": 95
+          },
+          "structural": {
+            "max_health": 120,
+            "armor": 8
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The FE-SOL-L was developed for Frontier Enterprises' own deep space operations. Its high efficiency justified the premium cost for resource-intensive mining operations.",
+            "design_notes": "Multi-junction cells capture a wider spectrum of light. Integrated power conditioning ensures stable output regardless of solar angle."
+          }
+        }
+      },
+      "fusion_reactor": {
+        "standard": {
+          "name": "Fusion Reactor",
+          "description": "Compact fusion power plant providing massive energy output. Requires Molybdenum fuel but offers unmatched power density.",
+          "grid_size": [4, 4],
+          "power_output": 200,
+          "power_usage": 0,
+          "staff_required": 8,
+          "maintenance_cost": 500,
+          "construction_time": 120,
+          "build_cost": {
+            "credits": 85000,
+            "cobaltite": 300,
+            "vanadium": 200,
+            "chromium": 150,
+            "molybdenum": 100,
+            "rhenium": 50
+          },
+          "stats": {
+            "efficiency": 85,
+            "reliability": 92,
+            "fuel_consumption": 5,
+            "explosion_risk": 15
+          },
+          "structural": {
+            "max_health": 300,
+            "armor": 25
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The FE-FUSION-1 brought industrial-scale power to the frontier. Its development was funded by the collective desperation of colonies tired of solar dependency during long asteroid shadows.",
+            "design_notes": "Magnetic confinement keeps plasma stable under normal conditions. Multiple failsafes prevent catastrophic containment breach - usually."
+          }
+        },
+        "high_output": {
+          "name": "High-Output Fusion Reactor",
+          "description": "Maximum power fusion plant for the most demanding installations. Exceptional output but increased fuel consumption and risk profile.",
+          "grid_size": [4, 4],
+          "power_output": 350,
+          "power_usage": 0,
+          "staff_required": 12,
+          "maintenance_cost": 800,
+          "construction_time": 180,
+          "build_cost": {
+            "credits": 150000,
+            "cobaltite": 500,
+            "vanadium": 350,
+            "chromium": 250,
+            "molybdenum": 180,
+            "rhenium": 100,
+            "iridium": 30
+          },
+          "stats": {
+            "efficiency": 80,
+            "reliability": 88,
+            "fuel_consumption": 10,
+            "explosion_risk": 25
+          },
+          "structural": {
+            "max_health": 350,
+            "armor": 30
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The FE-FUSION-HO was designed for heavy industrial complexes and military installations. Three have suffered containment breaches in the past century - all were total losses.",
+            "design_notes": "Pushed to the edge of safe plasma physics. The power output is worth the risk for operations that absolutely cannot afford downtime."
+          }
+        }
+      },
+      "power_storage": {
+        "battery_bank": {
+          "name": "Battery Bank",
+          "description": "Large-scale energy storage using advanced battery technology. Provides backup power during generation shortfalls.",
+          "grid_size": [2, 2],
+          "power_output": 0,
+          "power_usage": 2,
+          "staff_required": 1,
+          "maintenance_cost": 80,
+          "construction_time": 20,
+          "build_cost": {
+            "credits": 8000,
+            "cobaltite": 40,
+            "vanadium": 25,
+            "chromium": 15
+          },
+          "stats": {
+            "storage_capacity": 500,
+            "charge_rate": 50,
+            "discharge_rate": 100,
+            "efficiency": 85
+          },
+          "structural": {
+            "max_health": 100,
+            "armor": 8
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The FE-BATT series was developed after too many colonies experienced blackouts during asteroid rotation into shadow. Now standard equipment for any installation relying on solar power.",
+            "design_notes": "Solid-state cells eliminate fire risk. Modular design allows capacity expansion without full replacement."
+          }
+        },
+        "capacitor_array": {
+          "name": "Capacitor Array",
+          "description": "High-performance energy storage with rapid charge/discharge capability. Ideal for handling sudden power demands.",
+          "grid_size": [2, 2],
+          "power_output": 0,
+          "power_usage": 3,
+          "staff_required": 2,
+          "maintenance_cost": 150,
+          "construction_time": 35,
+          "build_cost": {
+            "credits": 20000,
+            "cobaltite": 70,
+            "vanadium": 45,
+            "chromium": 30,
+            "molybdenum": 20
+          },
+          "stats": {
+            "storage_capacity": 300,
+            "charge_rate": 150,
+            "discharge_rate": 300,
+            "efficiency": 95
+          },
+          "structural": {
+            "max_health": 120,
+            "armor": 10
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": true,
+          "lore": {
+            "history": "Originally developed for weapons systems requiring instant power delivery, the FE-CAP found civilian use in colonies with high-demand industrial equipment.",
+            "design_notes": "Superconducting coils maintain charge indefinitely with minimal loss. The rapid discharge capability can power emergency systems in milliseconds."
+          }
+        }
+      }
+    },
+    "security": {
+      "security_station": {
+        "patrol_post": {
+          "name": "Security Patrol Post",
+          "description": "Basic security checkpoint for monitoring colony access and maintaining order. Provides minimal deterrent effect.",
+          "grid_size": [2, 2],
+          "power_usage": 8,
+          "staff_required": 4,
+          "maintenance_cost": 100,
+          "construction_time": 20,
+          "build_cost": {
+            "credits": 5000,
+            "cobaltite": 20,
+            "vanadium": 10,
+            "chromium": 8
+          },
+          "stats": {
+            "order_maintenance": 15,
+            "detection_chance": 20,
+            "response_time": 60,
+            "suppression_power": 10
+          },
+          "structural": {
+            "max_health": 100,
+            "armor": 10
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The ND-SEC-P1 was Nova Dynamics' entry into the colonial security market. Simple and effective, it established their reputation for practical security solutions.",
+            "design_notes": "Reinforced construction protects security personnel during unrest. Integrated armory holds basic riot control equipment."
+          }
+        },
+        "security_center": {
+          "name": "Security Center",
+          "description": "Full-service security facility with detention cells, armory, and monitoring systems. Maintains order in medium-sized colonies.",
+          "grid_size": [2, 3],
+          "power_usage": 18,
+          "staff_required": 10,
+          "maintenance_cost": 250,
+          "construction_time": 45,
+          "build_cost": {
+            "credits": 18000,
+            "cobaltite": 60,
+            "vanadium": 40,
+            "chromium": 30,
+            "molybdenum": 15
+          },
+          "stats": {
+            "order_maintenance": 40,
+            "detection_chance": 50,
+            "response_time": 30,
+            "suppression_power": 35
+          },
+          "structural": {
+            "max_health": 180,
+            "armor": 18
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The ND-SEC-C2 became standard after the Labor Riots of 2612 demonstrated that patrol posts alone couldn't handle organized resistance. Its intimidating presence often prevents trouble before it starts.",
+            "design_notes": "Hardened communications ensure coordination during emergencies. The detention wing can hold up to 20 troublemakers for processing."
+          }
+        },
+        "intelligence_hq": {
+          "name": "Intelligence Headquarters",
+          "description": "Advanced security complex with surveillance networks, interrogation facilities, and counter-espionage capabilities. For when security means knowing everything.",
+          "grid_size": [3, 3],
+          "power_usage": 35,
+          "staff_required": 20,
+          "maintenance_cost": 500,
+          "construction_time": 90,
+          "build_cost": {
+            "credits": 55000,
+            "cobaltite": 150,
+            "vanadium": 100,
+            "chromium": 75,
+            "molybdenum": 45,
+            "rhenium": 20
+          },
+          "stats": {
+            "order_maintenance": 70,
+            "detection_chance": 85,
+            "response_time": 15,
+            "suppression_power": 60,
+            "counter_espionage": 75
+          },
+          "structural": {
+            "max_health": 280,
+            "armor": 25
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The ND-SEC-INT was developed in response to corporate espionage reaching epidemic levels during the Resource Wars. Its surveillance capabilities are legendary - and controversial.",
+            "design_notes": "Neural-link monitoring can detect deception in real-time. The data center processes feeds from thousands of sensors across the colony. Privacy advocates call it 'The Panopticon.'"
+          }
+        }
+      }
+    },
+    "defense": {
+      "turret": {
+        "point_defense": {
+          "name": "Point Defense Turret",
+          "description": "Rapid-fire defensive weapon designed to intercept incoming projectiles and small craft. Essential for missile defense.",
+          "grid_size": [1, 1],
+          "power_usage": 10,
+          "staff_required": 2,
+          "maintenance_cost": 100,
+          "construction_time": 20,
+          "build_cost": {
+            "credits": 6000,
+            "cobaltite": 25,
+            "vanadium": 15,
+            "chromium": 12
+          },
+          "stats": {
+            "damage": 8,
+            "rate_of_fire": 120,
+            "range": 500,
+            "accuracy": 70,
+            "tracking_speed": 90
+          },
+          "structural": {
+            "max_health": 80,
+            "armor": 8
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The ND-PD-1 was adapted from shipboard point defense systems for static installation. Its high rate of fire makes it deadly against missiles and strike craft.",
+            "design_notes": "Gatling-style rotary cannon fires 3000 rounds per minute. The predictive targeting system can engage multiple incoming threats simultaneously."
+          }
+        },
+        "autocannon": {
+          "name": "Autocannon Turret",
+          "description": "Medium-caliber defensive weapon effective against both ships and missiles. Balanced damage and rate of fire.",
+          "grid_size": [2, 2],
+          "power_usage": 20,
+          "staff_required": 3,
+          "maintenance_cost": 200,
+          "construction_time": 35,
+          "build_cost": {
+            "credits": 15000,
+            "cobaltite": 55,
+            "vanadium": 35,
+            "chromium": 28,
+            "molybdenum": 12
+          },
+          "stats": {
+            "damage": 25,
+            "rate_of_fire": 40,
+            "range": 1200,
+            "accuracy": 80,
+            "tracking_speed": 70
+          },
+          "structural": {
+            "max_health": 150,
+            "armor": 15
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The ND-AC-2 represents Nova Dynamics' philosophy of overwhelming firepower. When point defense isn't enough, autocannons provide the stopping power to discourage attackers.",
+            "design_notes": "Dual 40mm cannons with auto-loading magazines. Armor-piercing rounds can penetrate light ship hulls at effective range."
+          }
+        },
+        "railgun": {
+          "name": "Railgun Emplacement",
+          "description": "Electromagnetic accelerator delivering devastating kinetic impacts at extreme range. The premier anti-ship defensive weapon.",
+          "grid_size": [2, 2],
+          "power_usage": 45,
+          "staff_required": 4,
+          "maintenance_cost": 400,
+          "construction_time": 60,
+          "build_cost": {
+            "credits": 40000,
+            "cobaltite": 120,
+            "vanadium": 80,
+            "chromium": 60,
+            "molybdenum": 40,
+            "rhenium": 25
+          },
+          "stats": {
+            "damage": 100,
+            "rate_of_fire": 6,
+            "range": 3000,
+            "accuracy": 90,
+            "tracking_speed": 40
+          },
+          "structural": {
+            "max_health": 200,
+            "armor": 22
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The ND-RAIL-1 brought capital ship firepower to static installations. A single hit can cripple a frigate, making these emplacements priority targets in any assault.",
+            "design_notes": "Superconducting rails accelerate projectiles to 0.5% lightspeed. The recoil is absorbed by the asteroid itself, making larger bodies preferable for installation."
+          }
+        },
+        "plasma_cannon": {
+          "name": "Plasma Cannon",
+          "description": "Heavy energy weapon firing superheated plasma bolts. Devastating against shields and hull alike, but power-hungry and slow-firing.",
+          "grid_size": [2, 2],
+          "power_usage": 60,
+          "staff_required": 5,
+          "maintenance_cost": 550,
+          "construction_time": 80,
+          "build_cost": {
+            "credits": 65000,
+            "cobaltite": 180,
+            "vanadium": 120,
+            "chromium": 90,
+            "molybdenum": 60,
+            "rhenium": 40,
+            "iridium": 15
+          },
+          "stats": {
+            "damage": 150,
+            "rate_of_fire": 3,
+            "range": 2000,
+            "accuracy": 85,
+            "tracking_speed": 30,
+            "shield_damage_bonus": 50
+          },
+          "structural": {
+            "max_health": 250,
+            "armor": 28
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The ND-PLASMA represents the pinnacle of energy weapon technology. Developed from captured Zyn technology, it remains controversial due to its alien origins.",
+            "design_notes": "Magnetic containment shapes plasma into coherent bolts. The intense heat can melt through armor in seconds, but the weapon requires significant cooling between shots."
+          }
+        }
+      },
+      "anti_missile": {
+        "ciws": {
+          "name": "CIWS Battery",
+          "description": "Close-In Weapon System providing last-ditch missile defense. Multiple rapid-fire cannons create a wall of projectiles.",
+          "grid_size": [2, 2],
+          "power_usage": 15,
+          "staff_required": 3,
+          "maintenance_cost": 180,
+          "construction_time": 30,
+          "build_cost": {
+            "credits": 12000,
+            "cobaltite": 45,
+            "vanadium": 30,
+            "chromium": 22
+          },
+          "stats": {
+            "intercept_rate": 60,
+            "tracking_speed": 95,
+            "range": 300,
+            "ammunition_capacity": 5000
+          },
+          "structural": {
+            "max_health": 120,
+            "armor": 12
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The ND-CIWS evolved from naval Phalanx systems, proven technology dating back to the 20th century. When everything else fails, the CIWS fills the sky with metal.",
+            "design_notes": "Six rotating barrels per mount fire 6000 rounds per minute. Radar-guided targeting provides fully automatic operation."
+          }
+        },
+        "laser_grid": {
+          "name": "Laser Defense Grid",
+          "description": "Network of high-energy lasers providing superior missile interception. Instant hit, unlimited ammunition while powered.",
+          "grid_size": [2, 2],
+          "power_usage": 40,
+          "staff_required": 4,
+          "maintenance_cost": 350,
+          "construction_time": 55,
+          "build_cost": {
+            "credits": 35000,
+            "cobaltite": 100,
+            "vanadium": 70,
+            "chromium": 50,
+            "molybdenum": 35,
+            "rhenium": 20
+          },
+          "stats": {
+            "intercept_rate": 85,
+            "tracking_speed": 100,
+            "range": 600,
+            "ammunition_capacity": -1
+          },
+          "structural": {
+            "max_health": 160,
+            "armor": 15
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The ND-LASER-GRID represents the future of point defense. No ammunition to run out, no projectile travel time - just instant destruction of incoming threats.",
+            "design_notes": "Phased array emitters can split beams to engage multiple targets. The only limitation is power supply and heat dissipation."
+          }
+        }
+      },
+      "missile_silo": {
+        "standard": {
+          "name": "Missile Silo",
+          "description": "Standard missile launch facility with moderate capacity. Provides offensive capability against approaching threats.",
+          "grid_size": [2, 2],
+          "power_usage": 20,
+          "staff_required": 4,
+          "maintenance_cost": 250,
+          "construction_time": 45,
+          "build_cost": {
+            "credits": 20000,
+            "cobaltite": 70,
+            "vanadium": 45,
+            "chromium": 35,
+            "molybdenum": 20
+          },
+          "stats": {
+            "capacity": 12,
+            "reload_time": 30,
+            "range": 5000,
+            "guidance_quality": 70
+          },
+          "structural": {
+            "max_health": 180,
+            "armor": 20
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The ND-SILO-1 brought strategic deterrence to colonial defense. The threat of missile retaliation has prevented countless attacks.",
+            "design_notes": "Vertical launch tubes with blast-resistant doors. Automated handling system reloads from underground magazine."
+          }
+        },
+        "heavy": {
+          "name": "Heavy Missile Battery",
+          "description": "Large-scale missile installation with increased capacity and support for heavier warheads. A serious offensive threat.",
+          "grid_size": [3, 3],
+          "power_usage": 35,
+          "staff_required": 8,
+          "maintenance_cost": 450,
+          "construction_time": 75,
+          "build_cost": {
+            "credits": 45000,
+            "cobaltite": 150,
+            "vanadium": 100,
+            "chromium": 75,
+            "molybdenum": 50,
+            "rhenium": 25
+          },
+          "stats": {
+            "capacity": 24,
+            "reload_time": 45,
+            "range": 8000,
+            "guidance_quality": 85,
+            "heavy_missile_capable": 1
+          },
+          "structural": {
+            "max_health": 280,
+            "armor": 28
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The ND-SILO-H was developed for major installations requiring significant offensive capability. Its ability to launch capital-class missiles makes it a strategic asset.",
+            "design_notes": "Reinforced launch rails handle missiles up to 15 tons. Deep magazine bunkers can store warheads for extended campaigns."
+          }
+        },
+        "hardened": {
+          "name": "Hardened Missile Bunker",
+          "description": "Heavily armored missile facility designed to survive first strikes. Reduced capacity but exceptional survivability.",
+          "grid_size": [2, 2],
+          "power_usage": 25,
+          "staff_required": 5,
+          "maintenance_cost": 350,
+          "construction_time": 90,
+          "build_cost": {
+            "credits": 55000,
+            "cobaltite": 180,
+            "vanadium": 120,
+            "chromium": 100,
+            "molybdenum": 60,
+            "osmium": 40
+          },
+          "stats": {
+            "capacity": 8,
+            "reload_time": 60,
+            "range": 5000,
+            "guidance_quality": 75
+          },
+          "structural": {
+            "max_health": 500,
+            "armor": 50
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The ND-SILO-HARD was designed for retaliation. When everything else is destroyed, these bunkers ensure the enemy pays for their aggression.",
+            "design_notes": "Blast doors rated for nuclear near-misses. Can operate autonomously for 72 hours after colony destruction."
+          }
+        }
+      },
+      "shield_generator": {
+        "light": {
+          "name": "Light Shield Generator",
+          "description": "Basic energy shield providing moderate protection against weapons fire. Effective but power-intensive.",
+          "grid_size": [2, 2],
+          "power_usage": 30,
+          "staff_required": 3,
+          "maintenance_cost": 200,
+          "construction_time": 40,
+          "build_cost": {
+            "credits": 22000,
+            "cobaltite": 75,
+            "vanadium": 50,
+            "chromium": 35,
+            "molybdenum": 25
+          },
+          "stats": {
+            "shield_strength": 500,
+            "recharge_rate": 10,
+            "coverage_radius": 200
+          },
+          "structural": {
+            "max_health": 140,
+            "armor": 12
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The ND-SHIELD-L adapted shipboard shield technology for static defense. Its introduction changed colonial warfare - attackers could no longer rely on bombardment alone.",
+            "design_notes": "Projected field absorbs kinetic and energy attacks. The distinctive blue shimmer is caused by particle excitation in the shield matrix."
+          }
+        },
+        "standard": {
+          "name": "Standard Shield Generator",
+          "description": "Full-power shield installation providing robust defense for critical infrastructure. The backbone of modern colony defense.",
+          "grid_size": [3, 3],
+          "power_usage": 55,
+          "staff_required": 5,
+          "maintenance_cost": 400,
+          "construction_time": 70,
+          "build_cost": {
+            "credits": 50000,
+            "cobaltite": 160,
+            "vanadium": 110,
+            "chromium": 80,
+            "molybdenum": 55,
+            "rhenium": 30
+          },
+          "stats": {
+            "shield_strength": 1200,
+            "recharge_rate": 25,
+            "coverage_radius": 400
+          },
+          "structural": {
+            "max_health": 220,
+            "armor": 20
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The ND-SHIELD-S represents the standard for colonial protection. Its expanded coverage can protect multiple critical buildings from a single installation.",
+            "design_notes": "Overlapping field projectors create a seamless defensive bubble. Automatic frequency modulation counters shield-penetrating weapons."
+          }
+        },
+        "heavy": {
+          "name": "Heavy Shield Generator",
+          "description": "Maximum-power shield system capable of protecting entire colonies. Extreme power requirements but unmatched protection.",
+          "grid_size": [3, 3],
+          "power_usage": 100,
+          "staff_required": 8,
+          "maintenance_cost": 700,
+          "construction_time": 120,
+          "build_cost": {
+            "credits": 95000,
+            "cobaltite": 300,
+            "vanadium": 200,
+            "chromium": 150,
+            "molybdenum": 100,
+            "rhenium": 60,
+            "iridium": 25
+          },
+          "stats": {
+            "shield_strength": 3000,
+            "recharge_rate": 50,
+            "coverage_radius": 800
+          },
+          "structural": {
+            "max_health": 350,
+            "armor": 30
+          },
+          "manufacturer": "nova_dynamics",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The ND-SHIELD-H was developed for capital installations after the Battle of Vesta demonstrated that conventional shields couldn't withstand concentrated fleet bombardment.",
+            "design_notes": "Draws power from dedicated fusion plant. Can withstand capital ship weapons fire for extended periods - assuming the power holds."
+          }
+        }
+      }
+    },
+    "resource": {
+      "mine": {
+        "basic": {
+          "name": "Basic Mine",
+          "description": "Standard resource extraction facility for common minerals. Reliable but not particularly efficient.",
+          "grid_size": [2, 2],
+          "power_usage": 25,
+          "staff_required": 8,
+          "maintenance_cost": 200,
+          "construction_time": 35,
+          "build_cost": {
+            "credits": 10000,
+            "cobaltite": 40,
+            "vanadium": 25
+          },
+          "stats": {
+            "extraction_rate": 15,
+            "efficiency": 60,
+            "worker_safety": 70
+          },
+          "structural": {
+            "max_health": 150,
+            "armor": 12
+          },
+          "manufacturer": "stellar_resources",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The SR-MINE-1 has been extracting resources since the early days of asteroid mining. Simple, proven, and easy to maintain - the workhorse of the industry.",
+            "design_notes": "Conventional drilling and blasting techniques. The design prioritizes reliability over cutting-edge performance."
+          }
+        },
+        "industrial": {
+          "name": "Industrial Mine Complex",
+          "description": "Large-scale mining operation with improved efficiency and safety systems. The professional choice for serious extraction.",
+          "grid_size": [3, 3],
+          "power_usage": 45,
+          "staff_required": 15,
+          "maintenance_cost": 400,
+          "construction_time": 60,
+          "build_cost": {
+            "credits": 35000,
+            "cobaltite": 120,
+            "vanadium": 80,
+            "chromium": 50,
+            "molybdenum": 30
+          },
+          "stats": {
+            "extraction_rate": 40,
+            "efficiency": 75,
+            "worker_safety": 85
+          },
+          "structural": {
+            "max_health": 250,
+            "armor": 18
+          },
+          "manufacturer": "stellar_resources",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The SR-MINE-IND was developed when Stellar Resources realized that multiple small mines were less efficient than consolidated operations. Economies of scale transformed mining profitability.",
+            "design_notes": "Automated ore handling and processing on-site. Advanced safety systems include seismic monitoring and emergency evacuation tunnels."
+          }
+        },
+        "deep_core": {
+          "name": "Deep Core Extractor",
+          "description": "Advanced mining facility capable of reaching deep mineral deposits. Essential for accessing the richest veins.",
+          "grid_size": [4, 4],
+          "power_usage": 70,
+          "staff_required": 20,
+          "maintenance_cost": 600,
+          "construction_time": 100,
+          "build_cost": {
+            "credits": 75000,
+            "cobaltite": 250,
+            "vanadium": 170,
+            "chromium": 120,
+            "molybdenum": 80,
+            "rhenium": 40
+          },
+          "stats": {
+            "extraction_rate": 65,
+            "efficiency": 85,
+            "worker_safety": 75,
+            "depth_capability": 100
+          },
+          "structural": {
+            "max_health": 350,
+            "armor": 25
+          },
+          "manufacturer": "stellar_resources",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The SR-DEEP-CORE unlocked resources previously considered unreachable. Its development required breakthroughs in pressure containment and thermal management.",
+            "design_notes": "Plasma drilling reaches depths impossible with conventional methods. The extreme conditions require specially trained crews and constant monitoring."
+          }
+        },
+        "xenon_extractor": {
+          "name": "Xenon Mineral Extractor",
+          "description": "Specialized facility for extracting exotic xenon minerals. Extremely expensive but necessary for accessing the rarest resources.",
+          "grid_size": [4, 4],
+          "power_usage": 90,
+          "staff_required": 25,
+          "maintenance_cost": 900,
+          "construction_time": 150,
+          "build_cost": {
+            "credits": 150000,
+            "cobaltite": 400,
+            "vanadium": 280,
+            "chromium": 200,
+            "molybdenum": 140,
+            "rhenium": 80,
+            "iridium": 40
+          },
+          "stats": {
+            "extraction_rate": 20,
+            "efficiency": 70,
+            "worker_safety": 60,
+            "xenon_capable": 1
+          },
+          "structural": {
+            "max_health": 400,
+            "armor": 30
+          },
+          "manufacturer": "stellar_resources",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The SR-XENON was developed specifically for Helium-42 and Crystal Matrix extraction. The exotic materials require entirely new approaches to mining - approaches that cost lives to develop.",
+            "design_notes": "Quantum-stabilized extraction fields prevent material decay during mining. The process is dangerous even with every precaution - hazard pay is triple standard rates."
+          }
+        }
+      },
+      "refinery": {
+        "basic": {
+          "name": "Basic Refinery",
+          "description": "Standard ore processing facility that separates valuable minerals from waste rock. Essential for resource production.",
+          "grid_size": [3, 3],
+          "power_usage": 35,
+          "staff_required": 10,
+          "maintenance_cost": 300,
+          "construction_time": 50,
+          "build_cost": {
+            "credits": 25000,
+            "cobaltite": 90,
+            "vanadium": 60,
+            "chromium": 40
+          },
+          "stats": {
+            "processing_rate": 30,
+            "efficiency": 70,
+            "purity": 85
+          },
+          "structural": {
+            "max_health": 200,
+            "armor": 15
+          },
+          "manufacturer": "stellar_resources",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The SR-REF-1 transforms raw ore into usable materials. Without refineries, mining operations would have nothing but worthless rock.",
+            "design_notes": "Magnetic separation and chemical extraction handle most common ores. The modular design allows configuration for different mineral types."
+          }
+        },
+        "advanced": {
+          "name": "Advanced Refinery Complex",
+          "description": "High-efficiency processing facility with superior extraction rates and purity. Maximizes value from every ton of ore.",
+          "grid_size": [4, 4],
+          "power_usage": 60,
+          "staff_required": 18,
+          "maintenance_cost": 550,
+          "construction_time": 90,
+          "build_cost": {
+            "credits": 65000,
+            "cobaltite": 220,
+            "vanadium": 150,
+            "chromium": 100,
+            "molybdenum": 70,
+            "rhenium": 35
+          },
+          "stats": {
+            "processing_rate": 60,
+            "efficiency": 90,
+            "purity": 98
+          },
+          "structural": {
+            "max_health": 320,
+            "armor": 22
+          },
+          "manufacturer": "stellar_resources",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The SR-REF-ADV extracts every possible gram of value from processed ore. Its development made marginal deposits economically viable.",
+            "design_notes": "Nano-filtration and plasma refinement achieve near-perfect separation. The facility can process exotic minerals that destroy conventional equipment."
+          }
+        }
+      },
+      "storage_depot": {
+        "standard": {
+          "name": "Storage Depot",
+          "description": "Basic resource storage facility with climate control and security monitoring. Adequate for most storage needs.",
+          "grid_size": [2, 2],
+          "power_usage": 8,
+          "staff_required": 2,
+          "maintenance_cost": 80,
+          "construction_time": 20,
+          "build_cost": {
+            "credits": 5000,
+            "cobaltite": 25,
+            "vanadium": 15
+          },
+          "stats": {
+            "capacity": 2000,
+            "security_rating": 50,
+            "preservation_quality": 80
+          },
+          "structural": {
+            "max_health": 120,
+            "armor": 10
+          },
+          "manufacturer": "stellar_resources",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The SR-STORE-1 provides basic but reliable storage. Simple construction and low maintenance make it the default choice for new colonies.",
+            "design_notes": "Modular storage bays accommodate different cargo types. Environmental controls prevent degradation of sensitive materials."
+          }
+        },
+        "large": {
+          "name": "Large Storage Complex",
+          "description": "High-capacity storage facility with automated inventory management. Efficient handling of large resource stockpiles.",
+          "grid_size": [3, 3],
+          "power_usage": 15,
+          "staff_required": 4,
+          "maintenance_cost": 180,
+          "construction_time": 40,
+          "build_cost": {
+            "credits": 18000,
+            "cobaltite": 70,
+            "vanadium": 45,
+            "chromium": 30
+          },
+          "stats": {
+            "capacity": 8000,
+            "security_rating": 65,
+            "preservation_quality": 90
+          },
+          "structural": {
+            "max_health": 200,
+            "armor": 15
+          },
+          "manufacturer": "stellar_resources",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The SR-STORE-L became necessary as mining operations scaled up. Its automated systems can track thousands of individual cargo containers.",
+            "design_notes": "Robotic handlers move cargo with minimal human intervention. Real-time inventory tracking prevents losses and optimizes space utilization."
+          }
+        },
+        "hardened": {
+          "name": "Hardened Storage Vault",
+          "description": "Heavily armored storage facility designed to protect valuable resources from attack or disaster. Maximum security for critical stockpiles.",
+          "grid_size": [2, 2],
+          "power_usage": 12,
+          "staff_required": 4,
+          "maintenance_cost": 250,
+          "construction_time": 60,
+          "build_cost": {
+            "credits": 35000,
+            "cobaltite": 120,
+            "vanadium": 80,
+            "chromium": 60,
+            "osmium": 30
+          },
+          "stats": {
+            "capacity": 3000,
+            "security_rating": 95,
+            "preservation_quality": 98
+          },
+          "structural": {
+            "max_health": 450,
+            "armor": 45
+          },
+          "manufacturer": "stellar_resources",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The SR-STORE-H was developed after raiders specifically targeted resource stockpiles. Losing a year's production to a single raid made the investment worthwhile.",
+            "design_notes": "Buried construction with blast doors rated for heavy weapons. Biometric access control and round-the-clock guards protect the most valuable materials."
+          }
+        }
+      }
+    },
+    "fleet": {
+      "hangar": {
+        "fighter_bay": {
+          "name": "Fighter Bay",
+          "description": "Dedicated facility for small combat craft. Provides maintenance, refueling, and rapid launch capability.",
+          "grid_size": [3, 3],
+          "power_usage": 25,
+          "staff_required": 12,
+          "maintenance_cost": 300,
+          "construction_time": 50,
+          "build_cost": {
+            "credits": 30000,
+            "cobaltite": 100,
+            "vanadium": 70,
+            "chromium": 45,
+            "molybdenum": 25
+          },
+          "stats": {
+            "ship_capacity": 6,
+            "launch_rate": 2,
+            "repair_capability": 50,
+            "max_ship_class": 1
+          },
+          "structural": {
+            "max_health": 220,
+            "armor": 18
+          },
+          "manufacturer": "galactic_industries",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The GI-HANG-F provided colonial defense forces with rapid-response capability. Its compact design fits on asteroids too small for full shipyards.",
+            "design_notes": "Catapult launch system gets fighters into action in seconds. Automated maintenance bays can turn around damaged craft quickly."
+          }
+        },
+        "multi_role_hangar": {
+          "name": "Multi-Role Hangar",
+          "description": "Versatile facility accommodating various ship classes. Comprehensive maintenance and storage for mixed fleets.",
+          "grid_size": [4, 4],
+          "power_usage": 45,
+          "staff_required": 20,
+          "maintenance_cost": 500,
+          "construction_time": 80,
+          "build_cost": {
+            "credits": 60000,
+            "cobaltite": 200,
+            "vanadium": 140,
+            "chromium": 90,
+            "molybdenum": 55,
+            "rhenium": 30
+          },
+          "stats": {
+            "ship_capacity": 12,
+            "launch_rate": 4,
+            "repair_capability": 80,
+            "max_ship_class": 3
+          },
+          "structural": {
+            "max_health": 350,
+            "armor": 25
+          },
+          "manufacturer": "galactic_industries",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The GI-HANG-MR evolved from carrier deck designs to serve as a complete small fleet facility. Its flexibility makes it invaluable for frontier operations.",
+            "design_notes": "Modular internal configuration adapts to different fleet compositions. Heavy-lift systems can handle ships up to corvette class."
+          }
+        }
+      },
+      "shipyard": {
+        "basic": {
+          "name": "Basic Shipyard",
+          "description": "Standard ship construction facility capable of building small vessels. Essential for maintaining fleet strength.",
+          "grid_size": [4, 4],
+          "power_usage": 50,
+          "staff_required": 25,
+          "maintenance_cost": 450,
+          "construction_time": 90,
+          "build_cost": {
+            "credits": 55000,
+            "cobaltite": 180,
+            "vanadium": 120,
+            "chromium": 80,
+            "molybdenum": 50
+          },
+          "stats": {
+            "build_speed": 1.0,
+            "max_ship_class": 2,
+            "construction_bays": 1
+          },
+          "structural": {
+            "max_health": 300,
+            "armor": 20
+          },
+          "manufacturer": "galactic_industries",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The GI-YARD-B brought ship construction capability to the frontier. Before its introduction, every vessel had to be transported from core world facilities.",
+            "design_notes": "Zero-G assembly frame allows construction of ships larger than the facility itself. Modular component delivery simplifies logistics."
+          }
+        },
+        "advanced": {
+          "name": "Advanced Shipyard",
+          "description": "High-capacity construction facility with automated systems and multiple build bays. Efficient production of medium vessels.",
+          "grid_size": [5, 5],
+          "power_usage": 85,
+          "staff_required": 40,
+          "maintenance_cost": 750,
+          "construction_time": 140,
+          "build_cost": {
+            "credits": 120000,
+            "cobaltite": 400,
+            "vanadium": 280,
+            "chromium": 180,
+            "molybdenum": 120,
+            "rhenium": 60
+          },
+          "stats": {
+            "build_speed": 1.5,
+            "max_ship_class": 4,
+            "construction_bays": 2
+          },
+          "structural": {
+            "max_health": 450,
+            "armor": 28
+          },
+          "manufacturer": "galactic_industries",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The GI-YARD-ADV represented a massive investment in frontier shipbuilding capacity. Its dual construction bays can maintain continuous production.",
+            "design_notes": "Robotic welders and precision fabricators achieve core-world quality. The facility can construct ships up to frigate class."
+          }
+        },
+        "heavy": {
+          "name": "Heavy Shipyard",
+          "description": "Massive construction complex capable of building capital ships. A strategic asset for major powers.",
+          "grid_size": [6, 6],
+          "power_usage": 140,
+          "staff_required": 80,
+          "maintenance_cost": 1200,
+          "construction_time": 200,
+          "build_cost": {
+            "credits": 280000,
+            "cobaltite": 900,
+            "vanadium": 600,
+            "chromium": 420,
+            "molybdenum": 280,
+            "rhenium": 150,
+            "iridium": 60
+          },
+          "stats": {
+            "build_speed": 2.0,
+            "max_ship_class": 6,
+            "construction_bays": 3
+          },
+          "structural": {
+            "max_health": 650,
+            "armor": 40
+          },
+          "manufacturer": "galactic_industries",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The GI-YARD-H is the largest industrial structure commonly found in frontier space. Its ability to construct cruisers and carriers makes it a prime military target.",
+            "design_notes": "The kilometer-long construction gantries can assemble the largest combat vessels. A dedicated fusion plant powers the facility's enormous material processing systems."
+          }
+        }
+      },
+      "fleet_command": {
+        "tactical_center": {
+          "name": "Tactical Operations Center",
+          "description": "Command facility for coordinating local fleet operations. Improves response times and combat effectiveness.",
+          "grid_size": [3, 3],
+          "power_usage": 30,
+          "staff_required": 15,
+          "maintenance_cost": 350,
+          "construction_time": 55,
+          "build_cost": {
+            "credits": 40000,
+            "cobaltite": 130,
+            "vanadium": 90,
+            "chromium": 60,
+            "molybdenum": 40
+          },
+          "stats": {
+            "command_range": 5000,
+            "coordination_bonus": 15,
+            "fleet_capacity": 20
+          },
+          "structural": {
+            "max_health": 260,
+            "armor": 22
+          },
+          "manufacturer": "galactic_industries",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The GI-CMD-TAC brings military-grade command and control to colonial defense forces. Its introduction transformed ragtag militias into coordinated fighting forces.",
+            "design_notes": "Holographic tactical displays provide real-time battlefield awareness. Secure communication links maintain contact with fleet elements across the sector."
+          }
+        },
+        "strategic_command": {
+          "name": "Strategic Command Center",
+          "description": "Advanced command complex for theater-wide fleet coordination. Essential for major military operations.",
+          "grid_size": [4, 4],
+          "power_usage": 55,
+          "staff_required": 30,
+          "maintenance_cost": 600,
+          "construction_time": 100,
+          "build_cost": {
+            "credits": 85000,
+            "cobaltite": 280,
+            "vanadium": 190,
+            "chromium": 130,
+            "molybdenum": 85,
+            "rhenium": 45
+          },
+          "stats": {
+            "command_range": 15000,
+            "coordination_bonus": 30,
+            "fleet_capacity": 50
+          },
+          "structural": {
+            "max_health": 400,
+            "armor": 32
+          },
+          "manufacturer": "galactic_industries",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The GI-CMD-STRAT serves as the nerve center for major fleet operations. During the Border Conflicts, these facilities coordinated campaigns spanning multiple star systems.",
+            "design_notes": "Quantum-entangled communications provide instantaneous contact with distant fleets. AI-assisted analysis processes tactical data faster than human operators."
+          }
+        }
+      },
+      "orbital_dock": {
+        "repair_bay": {
+          "name": "Repair Bay",
+          "description": "Dedicated facility for ship maintenance and battle damage repair. Keeps fleets operational.",
+          "grid_size": [3, 3],
+          "power_usage": 30,
+          "staff_required": 15,
+          "maintenance_cost": 320,
+          "construction_time": 50,
+          "build_cost": {
+            "credits": 35000,
+            "cobaltite": 120,
+            "vanadium": 80,
+            "chromium": 55,
+            "molybdenum": 30
+          },
+          "stats": {
+            "repair_rate": 50,
+            "max_ship_class": 3,
+            "docking_capacity": 4
+          },
+          "structural": {
+            "max_health": 240,
+            "armor": 18
+          },
+          "manufacturer": "galactic_industries",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The GI-DOCK-R keeps ships fighting. Without repair facilities, even minor battle damage would require expensive trips to core world shipyards.",
+            "design_notes": "Modular repair gantries adapt to different hull configurations. Spare parts fabrication on-site reduces dependency on supply chains."
+          }
+        },
+        "full_service_dock": {
+          "name": "Full Service Dock",
+          "description": "Comprehensive ship servicing facility with repair, refit, and upgrade capabilities. A complete fleet support installation.",
+          "grid_size": [4, 4],
+          "power_usage": 55,
+          "staff_required": 30,
+          "maintenance_cost": 550,
+          "construction_time": 90,
+          "build_cost": {
+            "credits": 75000,
+            "cobaltite": 250,
+            "vanadium": 170,
+            "chromium": 115,
+            "molybdenum": 70,
+            "rhenium": 35
+          },
+          "stats": {
+            "repair_rate": 100,
+            "max_ship_class": 5,
+            "docking_capacity": 8,
+            "refit_capable": 1
+          },
+          "structural": {
+            "max_health": 380,
+            "armor": 26
+          },
+          "manufacturer": "galactic_industries",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The GI-DOCK-FS provides everything a fleet needs short of new construction. Its ability to refit ships with new equipment makes it invaluable for upgrading older vessels.",
+            "design_notes": "Multiple docking arms service ships simultaneously. The facility can completely strip and rebuild a frigate in under a month."
+          }
+        }
+      }
+    },
+    "utility": {
+      "sensor_array": {
+        "basic": {
+          "name": "Basic Sensor Array",
+          "description": "Standard detection system providing early warning of approaching vessels. Essential for colonial security.",
+          "grid_size": [2, 2],
+          "power_usage": 12,
+          "staff_required": 3,
+          "maintenance_cost": 120,
+          "construction_time": 25,
+          "build_cost": {
+            "credits": 8000,
+            "cobaltite": 30,
+            "vanadium": 20,
+            "chromium": 12
+          },
+          "stats": {
+            "detection_range": 3000,
+            "resolution": 60,
+            "tracking_capacity": 20,
+            "sensor_range": 3000
+          },
+          "structural": {
+            "max_health": 100,
+            "armor": 8
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The FE-SENS-B was standard equipment on every Frontier Enterprises survey ship before being adapted for permanent installation. Its reliability made it the default choice for early warning systems.",
+            "design_notes": "Passive and active sensor modes provide flexibility. The distinctive dish array has become iconic of colonial installations."
+          }
+        },
+        "advanced": {
+          "name": "Advanced Sensor Array",
+          "description": "Enhanced detection system with improved range and resolution. Can identify vessel types and track multiple contacts.",
+          "grid_size": [2, 3],
+          "power_usage": 25,
+          "staff_required": 5,
+          "maintenance_cost": 250,
+          "construction_time": 45,
+          "build_cost": {
+            "credits": 25000,
+            "cobaltite": 85,
+            "vanadium": 55,
+            "chromium": 40,
+            "molybdenum": 25
+          },
+          "stats": {
+            "detection_range": 6000,
+            "resolution": 85,
+            "tracking_capacity": 50,
+            "sensor_range": 6000
+          },
+          "structural": {
+            "max_health": 150,
+            "armor": 12
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The FE-SENS-A represented a significant upgrade in colonial surveillance capability. Its ability to identify ship classes at extreme range provided crucial tactical intelligence.",
+            "design_notes": "Phased array design eliminates mechanical pointing systems. Spectral analysis can determine ship signatures even through stealth coatings."
+          }
+        },
+        "deep_space": {
+          "name": "Deep Space Scanner",
+          "description": "Long-range detection system capable of surveying entire sectors. Strategic intelligence gathering for major installations.",
+          "grid_size": [3, 3],
+          "power_usage": 45,
+          "staff_required": 8,
+          "maintenance_cost": 450,
+          "construction_time": 80,
+          "build_cost": {
+            "credits": 60000,
+            "cobaltite": 200,
+            "vanadium": 140,
+            "chromium": 95,
+            "molybdenum": 60,
+            "rhenium": 30
+          },
+          "stats": {
+            "detection_range": 15000,
+            "resolution": 95,
+            "tracking_capacity": 100,
+            "anomaly_detection": 1,
+            "sensor_range": 15000
+          },
+          "structural": {
+            "max_health": 220,
+            "armor": 18
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The FE-SENS-DS was developed for resource prospecting but found equal use in military intelligence. Its ability to detect activity across vast distances makes it invaluable for strategic planning.",
+            "design_notes": "Gravitational wave detectors supplement electromagnetic sensors. The system can detect fleet movements light-hours away."
+          }
+        }
+      },
+      "communications_hub": {
+        "relay_station": {
+          "name": "Communications Relay",
+          "description": "Standard communication facility for local and inter-colony messaging. Maintains contact with the wider network.",
+          "grid_size": [2, 2],
+          "power_usage": 10,
+          "staff_required": 2,
+          "maintenance_cost": 100,
+          "construction_time": 20,
+          "build_cost": {
+            "credits": 6000,
+            "cobaltite": 25,
+            "vanadium": 15,
+            "chromium": 10
+          },
+          "stats": {
+            "transmission_range": 5000,
+            "bandwidth": 100,
+            "encryption_level": 60
+          },
+          "structural": {
+            "max_health": 80,
+            "armor": 6
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The FE-COMM-R forms the backbone of the frontier communication network. These relays pass messages across the void, connecting isolated colonies to civilization.",
+            "design_notes": "Laser and radio transmission provide redundancy. Standard encryption protects routine communications from casual interception."
+          }
+        },
+        "command_uplink": {
+          "name": "Command Uplink",
+          "description": "High-security communication facility with quantum encryption and priority bandwidth. For sensitive corporate and military communications.",
+          "grid_size": [2, 2],
+          "power_usage": 20,
+          "staff_required": 4,
+          "maintenance_cost": 220,
+          "construction_time": 40,
+          "build_cost": {
+            "credits": 22000,
+            "cobaltite": 75,
+            "vanadium": 50,
+            "chromium": 35,
+            "molybdenum": 20
+          },
+          "stats": {
+            "transmission_range": 10000,
+            "bandwidth": 500,
+            "encryption_level": 95
+          },
+          "structural": {
+            "max_health": 130,
+            "armor": 12
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The FE-COMM-CMD provides the secure links that corporate executives demand. Its quantum encryption has never been broken - publicly.",
+            "design_notes": "Entangled particle communication provides theoretically unbreakable encryption. Priority routing ensures critical messages always get through."
+          }
+        }
+      },
+      "asteroid_engines": {
+        "maneuvering": {
+          "name": "Maneuvering Thrusters",
+          "description": "Ion thrusters for minor asteroid repositioning. Allows gradual orbital adjustments.",
+          "grid_size": [3, 3],
+          "power_usage": 40,
+          "staff_required": 6,
+          "maintenance_cost": 300,
+          "construction_time": 60,
+          "build_cost": {
+            "credits": 35000,
+            "cobaltite": 120,
+            "vanadium": 80,
+            "chromium": 55,
+            "molybdenum": 35
+          },
+          "stats": {
+            "thrust_power": 100,
+            "fuel_efficiency": 80,
+            "precision": 90
+          },
+          "structural": {
+            "max_health": 180,
+            "armor": 15
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The FE-ENGINE-M made asteroid repositioning economically viable. Moving a rock into a better orbit or away from collision course was once impossibly expensive.",
+            "design_notes": "Low-thrust ion engines provide efficient acceleration over time. The system can adjust an asteroid's orbit by meters per day."
+          }
+        },
+        "main_drive": {
+          "name": "Main Drive Array",
+          "description": "High-power propulsion system for significant asteroid movement. Can relocate asteroids across the sector.",
+          "grid_size": [4, 4],
+          "power_usage": 80,
+          "staff_required": 12,
+          "maintenance_cost": 600,
+          "construction_time": 120,
+          "build_cost": {
+            "credits": 95000,
+            "cobaltite": 320,
+            "vanadium": 220,
+            "chromium": 150,
+            "molybdenum": 100,
+            "rhenium": 50
+          },
+          "stats": {
+            "thrust_power": 500,
+            "fuel_efficiency": 60,
+            "precision": 70
+          },
+          "structural": {
+            "max_health": 300,
+            "armor": 22
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The FE-ENGINE-MAIN turned asteroids into mobile bases. During the Resource Wars, companies relocated entire mining complexes to avoid conflict zones.",
+            "design_notes": "Fusion torch drives provide massive thrust at the cost of efficiency. Moving a kilometer-wide asteroid requires months of continuous burn."
+          }
+        }
+      },
+      "satellite_control": {
+        "uplink": {
+          "name": "Satellite Uplink",
+          "description": "Basic facility for controlling and communicating with orbital satellites. Provides local area coverage.",
+          "grid_size": [2, 2],
+          "power_usage": 10,
+          "staff_required": 2,
+          "maintenance_cost": 100,
+          "construction_time": 20,
+          "build_cost": {
+            "credits": 7000,
+            "cobaltite": 28,
+            "vanadium": 18,
+            "chromium": 12
+          },
+          "stats": {
+            "satellite_capacity": 4,
+            "control_range": 3000,
+            "data_throughput": 50
+          },
+          "structural": {
+            "max_health": 90,
+            "armor": 6
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": false,
+          "lore": {
+            "history": "The FE-SAT-UP extends colonial surveillance through satellite networks. A single facility can coordinate multiple satellites for comprehensive coverage.",
+            "design_notes": "Automated tracking maintains contact with orbiting assets. The control software can manage diverse satellite types simultaneously."
+          }
+        },
+        "network_hub": {
+          "name": "Satellite Network Hub",
+          "description": "Advanced satellite command facility capable of coordinating extensive orbital networks. Strategic surveillance capability.",
+          "grid_size": [2, 2],
+          "power_usage": 22,
+          "staff_required": 5,
+          "maintenance_cost": 220,
+          "construction_time": 45,
+          "build_cost": {
+            "credits": 25000,
+            "cobaltite": 85,
+            "vanadium": 55,
+            "chromium": 40,
+            "molybdenum": 25
+          },
+          "stats": {
+            "satellite_capacity": 12,
+            "control_range": 8000,
+            "data_throughput": 200
+          },
+          "structural": {
+            "max_health": 150,
+            "armor": 12
+          },
+          "manufacturer": "frontier_enterprises",
+          "blueprint_required": true,
+          "lore": {
+            "history": "The FE-SAT-HUB transformed satellite operations from simple observation to integrated intelligence gathering. Its data fusion capabilities create comprehensive situational awareness.",
+            "design_notes": "AI-assisted analysis processes satellite data in real-time. The hub can task satellites dynamically based on detected threats or opportunities."
+          }
+        }
+      }
+    }
+  }
+}

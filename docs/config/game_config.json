@@ -1,0 +1,27 @@
+{
+  "sector_sizes": {
+    "small": { "width": 10000, "height": 10000, "asteroid_count": 50 },
+    "medium": { "width": 30000, "height": 30000, "asteroid_count": 150 },
+    "large": { "width": 100000, "height": 100000, "asteroid_count": 500 }
+  },
+  "worldgen": {
+    "min_spawn_distance": 200.0,
+    "neighbor_range": 1500.0,
+    "start_nearby_min_neighbors": 2,
+    "max_asteroid_speed_units_per_year": 100.0,
+    "no_collision_horizon_years": 2.0,
+    "max_attempts_per_asteroid": 3000
+  },
+  "time": {
+    "seconds_per_year": 31557600.0,
+    "time_scale_slow": 1.0,
+    "time_scale_normal": 2.0,
+    "time_scale_fast": 4.0,
+    "time_scale_fastest": 8.0,
+    "base_time_scale": 2.0
+  },
+  "sensor_range": {
+    "base_colony_range": 2000.0,
+    "sensor_building_range": 3000.0
+  }
+}
