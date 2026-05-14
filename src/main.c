@@ -2,7 +2,6 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3/SDL_init.h>
-#include <stdio.h>
 #include "game.h"
 #include "render.h"
 

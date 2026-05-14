@@ -1,24 +1,12 @@
 #include "../game/asteroid.h"
+#include "../data/game_settings.h"
 
 int main(int argc, char *argv[]) {
-    GameAsteroidSettings settings = {
-        .asteroid_count = 200,
-        .sector_size = { 100, 100 },
-        .asteroid_speed_modifier = 1.0,
-        .asteroid_size_modifier = 1.0,
-        .common_desposit_chance = 0.5,
-        .common_deposit_quantity_base = 10,
-        .common_deposit_quantity_stddev = 5,
-        .uncommon_desposit_chance = 0.3,
-        .uncommon_deposit_quantity_base = 20,
-        .uncommon_deposit_quantity_stddev = 10,
-        .rare_desposit_chance = 0.1,
-        .rare_deposit_quantity_base = 30,
-        .rare_deposit_quantity_stddev = 15,
-        .strategic_desposit_chance = 0.05,
-        .strategic_deposit_quantity_base = 40,
-        .strategic_deposit_quantity_stddev = 20,
-    };
+    GameSettings settings = game_settings((GameSettingsSelection){
+        .difficulty = GAME_DIFFICULTY_DEFAULT,
+        .sector_size_selection = GAME_SECTOR_SIZE_MEDIUM,
+        .asteroid_density_selection = GAME_ASTEROID_DENSITY_MEDIUM,
+    });
     for(int i = 0; i < 1000000; i++) {
         asteroids_generate(&settings);
     }

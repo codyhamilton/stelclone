@@ -19,12 +19,26 @@ add_executable(Stelclone
     ${CMAKE_SOURCE_DIR}/src/game.c
     ${CMAKE_SOURCE_DIR}/src/render.c
     ${CMAKE_SOURCE_DIR}/src/game/asteroid.c
+    ${CMAKE_SOURCE_DIR}/src/data/game_settings.c
+    ${CMAKE_SOURCE_DIR}/src/util/pcg_basic.c
 )
 add_executable(PerfAsteroids
     ${CMAKE_SOURCE_DIR}/src/perf/perf_asteroids.c
     ${CMAKE_SOURCE_DIR}/src/game/asteroid.c
     ${CMAKE_SOURCE_DIR}/src/data/resources.c
+    ${CMAKE_SOURCE_DIR}/src/data/game_settings.c
+    ${CMAKE_SOURCE_DIR}/src/util/pcg_basic.c
 )
+
+enable_testing()
+add_executable(test_asteroids
+    ${CMAKE_SOURCE_DIR}/src/test/asteroids.c
+    ${CMAKE_SOURCE_DIR}/src/game/asteroid.c
+    ${CMAKE_SOURCE_DIR}/src/data/resources.c
+    ${CMAKE_SOURCE_DIR}/src/data/game_settings.c
+    ${CMAKE_SOURCE_DIR}/src/util/pcg_basic.c
+)
+add_test(NAME TestAsteroidGeneration COMMAND test_asteroids)
 
 # Link to the actual SDL3 library.
 target_link_libraries(Stelclone PRIVATE
@@ -32,4 +46,8 @@ target_link_libraries(Stelclone PRIVATE
     SDL3_mixer::SDL3_mixer
     SDL3_ttf::SDL3_ttf
     SDL3::SDL3
+    m
 )
+
+target_link_libraries(test_asteroids PRIVATE m)
+target_link_libraries(PerfAsteroids PRIVATE m)
