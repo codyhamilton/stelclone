@@ -44,6 +44,31 @@ typedef struct {
     uint16_t count;
 } Asteroids;
 
+
+/**
+ * Home asteroid neighbour count
+ * 
+ * How many asteroids this home planet is closest to
+ */
+typedef struct {
+    Asteroid *home_asteroid;
+    int32_t count;
+} HomeAsteroidNeighbourCount;
+
+/**
+ * Asteroid generation stats
+ * 
+ * Statistics for the asteroid generation process.
+ */
+typedef struct {
+    HomeAsteroidNeighbourCount home_asteroid_neighbour_counts[8];
+    int8_t retries_home_asteroids;
+    int8_t retries_random_asteroids;
+    int8_t retries_backfill_asteroids;
+} AsteroidGenerationStats;
+
+AsteroidGenerationStats asteroid_generation_stats(void);
+
 /**
  * Generate the asteroids
  * 

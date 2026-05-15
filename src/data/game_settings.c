@@ -2,7 +2,7 @@
 #include <string.h>
 
 static const GameSettings default_settings = {
-    .sector_size = { 10000, 8000 },
+    .sector_size = { 5000, 4000 },
     .sector_size_selection = GAME_SECTOR_SIZE_MEDIUM,
     .difficulty_selection = GAME_DIFFICULTY_DEFAULT,
     .player_count = 3,
@@ -13,7 +13,7 @@ static const GameSettings default_settings = {
         .asteroid_count = 100,
         .effect_chance = 20,
         .asteroid_density_selection = GAME_ASTEROID_DENSITY_MEDIUM,
-        .min_distance_between_asteroids = 100,
+        .min_distance_between_asteroids = 50,
         .min_home_reachable_asteroids = 2,
         .max_home_reachable_distance = 400,
         .large = { 

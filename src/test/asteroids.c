@@ -64,8 +64,20 @@ Grid create_grid( int width, int height) {
     };
 }
 
-void draw_asteroids(Asteroids *asteroids, int count, Grid grid, Vector sector_size) {
+typedef struct {
+    enum AsteroidEffect effect;
+    enum AsteroidSize size;
+} DrawFilter;
+
+void draw_asteroids(Asteroids *asteroids, int count, Grid grid, Vector sector_size, DrawFilter *filter) {
     for(Asteroid *asteroid = asteroids->items; asteroid != asteroids->items + count; asteroid++) {
+        if(filter && filter->effect && asteroid->effect != filter->effect) {
+            continue;
+        }
+        if(filter && filter->size && asteroid->size != filter->size) {
+            continue;
+        }
+
         char symbol;
         if(asteroid->effect == AST_EFFECT_PLAYER_HOME) {
             symbol = 'H';
@@ -88,7 +100,17 @@ void draw_asteroids(Asteroids *asteroids, int count, Grid grid, Vector sector_si
 
         const int x = grid.x_max * asteroid->position.x / sector_size.x;
         const int y = grid.y_max * asteroid->position.y / sector_size.y;
-        grid.buffer[((y + 1) * grid.stride) + x + 1] = symbol;
+
+        const int offset = ((y + 1) * grid.stride) + x + 1;
+
+        if(offset < 0 || offset >= grid.stride * grid.rows) {
+            printf("Asteroid out of bounds: x: %d, y: %d, offset: %d\n", x, y, offset);
+            continue;
+        }
+
+        if(grid.buffer[offset] == ' ') {
+            grid.buffer[offset] = symbol;
+        }
     }
 }
 
@@ -104,21 +126,16 @@ Asteroids *execute_generator(GameSettings settings) {
     return asteroids_list();
 }
 
-void test_player_deposition(int iterations, int player_count) {
+void test_player_deposition(GameSettings settings, int iterations, int player_count) {
     printf("Testing %d players deposition with %d iterations...\n", player_count, iterations);
     Grid grid = create_grid(width, height);
 
-    GameSettings settings = game_settings((GameSettingsSelection){
-        .difficulty = GAME_DIFFICULTY_DEFAULT,
-        .sector_size_selection = GAME_SECTOR_SIZE_MEDIUM,
-        .asteroid_density_selection = GAME_ASTEROID_DENSITY_MEDIUM,
-    });
-
-    settings.player_count = player_count;
-
+    DrawFilter filter = {
+        .effect = AST_EFFECT_PLAYER_HOME
+    };
     for(int i = 0; i < iterations; i++) {
         Asteroids *asteroids = execute_generator(settings);
-        draw_asteroids(asteroids, settings.player_count, grid, settings.sector_size);
+        draw_asteroids(asteroids, asteroids->count, grid, settings.sector_size, &filter);
     }
 
     printf("%s", grid.buffer);
@@ -127,17 +144,50 @@ void test_player_deposition(int iterations, int player_count) {
     free(grid.buffer);
 }
 
-void test_full_deposition(GameSettings settings, int player_count) {
-    printf("Testing %d players deposition...\n", player_count);
-    Grid grid = create_grid(width, height);
-
-    settings.player_count = player_count;
+void test_full_deposition(GameSettings settings) {
+    char sector_size_name[8];
+    char asteroid_density_name[8];
+    int grid_width = width;
+    int grid_height = height;
+    switch(settings.sector_size_selection) {
+        case GAME_SECTOR_SIZE_SMALL:
+            strcpy(sector_size_name, "Small");
+            grid_width *= 0.5;
+            grid_height *= 0.5;
+            break;
+        case GAME_SECTOR_SIZE_MEDIUM:
+            strcpy(sector_size_name, "Medium");
+            break;
+        case GAME_SECTOR_SIZE_LARGE:
+            strcpy(sector_size_name, "Large");
+            grid_width *= 1.5;
+            grid_height *= 1.5;
+            break;
+        default:
+            strcpy(sector_size_name, "Unknown");
+            break;
+    }
+    switch(settings.asteroids.asteroid_density_selection) {
+        case GAME_ASTEROID_DENSITY_LOW:
+            strcpy(asteroid_density_name, "Low");
+            break;
+        case GAME_ASTEROID_DENSITY_MEDIUM:
+            strcpy(asteroid_density_name, "Medium");
+            break;
+        case GAME_ASTEROID_DENSITY_HIGH:
+            strcpy(asteroid_density_name, "High");
+            break;
+        default:
+            strcpy(asteroid_density_name, "Unknown");
+            break;
+    }
+    Grid grid = create_grid(grid_width, grid_height);
 
     Asteroids *asteroids = execute_generator(settings);
-    draw_asteroids(asteroids, asteroids->count, grid, settings.sector_size);
+    draw_asteroids(asteroids, asteroids->count, grid, settings.sector_size, NULL);
 
     printf("%s", grid.buffer);
-    printf("Test passed: %d players deposition\n", player_count);
+    printf("Test passed: Full asteroid deposition with %s sector size and %s asteroid density\n", sector_size_name, asteroid_density_name);
     printf("\n\n");
     free(grid.buffer);
 }
@@ -147,17 +197,27 @@ void test_full_deposition(GameSettings settings, int player_count) {
 int main(int argc, char *argv[]) {
     srand(time(NULL));
 
+    GameSettingsSelection selection = {
+        .difficulty = GAME_DIFFICULTY_DEFAULT,
+        .sector_size_selection = GAME_SECTOR_SIZE_MEDIUM,
+        .asteroid_density_selection = GAME_ASTEROID_DENSITY_MEDIUM,
+    };
+    GameSettings default_settings = game_settings(selection);
+
     for(int i = 2; i <= 8; i++) {
-        test_player_deposition(1, i);
-        test_player_deposition(200, i);
+        default_settings.player_count = i;
+        test_player_deposition(default_settings, 200, i);
+    }
 
-        GameSettings settings = game_settings((GameSettingsSelection){
-            .difficulty = GAME_DIFFICULTY_DEFAULT,
-            .sector_size_selection = GAME_SECTOR_SIZE_MEDIUM,
-            .asteroid_density_selection = GAME_ASTEROID_DENSITY_MEDIUM,
-        });
-
-        test_full_deposition(settings, i);
+    for(int i = GAME_SECTOR_SIZE_SMALL; i <= GAME_SECTOR_SIZE_LARGE; i++) {
+        for(int j = GAME_ASTEROID_DENSITY_LOW; j <= GAME_ASTEROID_DENSITY_HIGH; j++) {
+            GameSettings settings = game_settings((GameSettingsSelection){
+                .difficulty = GAME_DIFFICULTY_DEFAULT,
+                .sector_size_selection = i,
+                .asteroid_density_selection = j,
+            });
+            test_full_deposition(settings);
+        }
     }
 
     return 0;

@@ -4,7 +4,11 @@
 #include "../util/log.h"
 #include "../util/rand.h"
 
+static const float ASTEROID_BACKFILL_PERCENTAGE = 0.2f; // 20% of asteroids are reserved to backfill under-populated home regions
+
 static Asteroids asteroids;
+static Asteroids home_asteroids;
+static AsteroidGenerationStats stats;
 
 void updateAsteroids() { }
 
@@ -15,7 +19,6 @@ static void asteroids_free() {
     free(asteroids.items);
 }
 
-
 /**
  * Get the list of asteroids
  * 
@@ -23,6 +26,10 @@ static void asteroids_free() {
  */
 Asteroids *asteroids_list() {
     return &asteroids;
+}
+
+AsteroidGenerationStats asteroid_generation_stats() {
+    return stats;
 }
 
 /**
@@ -69,70 +76,134 @@ static bool is_valid_asteroid_position(Vector p, int32_t min) {
     return true;
 }
 
+typedef struct {
+    Vector min; // Minimum position
+    Vector max; // Maximum position
+    int32_t min_distance; // Minimum distance between asteroids
+} AsteroidPlacementBounds;
+
+static const int max_placement_attempts = 100;
+
+static bool find_position_within_bounds(Vector *position, AsteroidPlacementBounds bounds) {
+    for(int attempts = 0; attempts < max_placement_attempts; attempts++) {
+        position->x = prng(bounds.max.x - bounds.min.x) + bounds.min.x;
+        position->y = prng(bounds.max.y - bounds.min.y) + bounds.min.y;
+        if(is_valid_asteroid_position(*position, bounds.min_distance)) {
+            return true;
+        }
+    }
+    position->x = 0;
+    position->y = 0;
+    return false;
+}
+
+static bool find_position_within_distance(Vector *position, Vector center, int32_t min_distance, int32_t max_distance) {
+    for(int attempts = 0; attempts < max_placement_attempts; attempts++) {
+        const int32_t distance = prng_range(min_distance, max_distance);
+        const float angle = prng(360) / 360.0f * M_PI * 2;
+        position->x = (int32_t)(center.x + cos(angle) * distance);
+        position->y = (int32_t)(center.y + sin(angle) * distance);
+        if(is_valid_asteroid_position(*position, min_distance)) {
+            return true;
+        }
+    }
+    position->x = 0;
+    position->y = 0;
+    return false;
+}
+
 static bool place_home_asteroids(GameSettings *settings) {
-    const int8_t max_placement_attempts = 100;
-    const int32_t row_height = settings->sector_size.y / 2;
+
     // We're dividing the sector into two rows, sizing cells based on player count.
     // E.g. for 2 players, cols 1+1. 3 = 2+1. 4 = 2+2. 5 = 3+2. 6 = 3+3. etc.
+    const int32_t row_height = settings->sector_size.y / 2;
     for(uint8_t i = 0; i < settings->player_count; i++) {
         // Calculate the strata position and colwidth for this player
         const uint8_t offset = i % 2; // 0 for even, 1 for odd
-        const int32_t colwidth = settings->sector_size.x / ((settings->player_count + 1 - offset) / 2); // cell width
-        const int32_t strata_y = (row_height / 2) + (offset * row_height); // cell y position
-        const int32_t strata_x = (colwidth / 2) + (colwidth * (i - offset) / 2); // cell x position
+        const uint8_t cells = (settings->player_count + 1 - offset) / 2;
+        const int32_t cell_width = settings->sector_size.x / cells; // cell width
+
+        const int32_t x_buffer = cell_width * 0.2;
+        const int32_t y_buffer = row_height * 0.2;
+
+        const Vector start = (Vector){
+            .x = cell_width * (i - offset) / 2 + x_buffer,
+            .y = offset * row_height + y_buffer
+        };
+        const Vector end = (Vector){
+            .x = start.x + cell_width - (2 * x_buffer),
+            .y = start.y + row_height - (2 * y_buffer)
+        };
+        const AsteroidPlacementBounds bounds = (AsteroidPlacementBounds){
+            .min = start,
+            .max = end,
+            .min_distance = settings->asteroids.min_distance_between_asteroids
+        };
 
         // Now we have centre points for the strata, we can randomly place home asteroids in their strata
-        Asteroid *asteroid = &asteroids.items[asteroids.count++];
-        const int32_t col_range = colwidth * 3 / 4;
-        const int32_t row_range = row_height * 3 / 4;
-        const int32_t start_x = strata_x - (col_range / 2);
-        const int32_t start_y = strata_y - (row_range / 2);
-        bool home_placed = false;
-        // We'll retry up to max_placement_attempts times to place the home asteroid
-        for(int attempts = 0; attempts < max_placement_attempts; attempts++) {
-            asteroid->position.x = start_x + prng(col_range);
-            asteroid->position.y = start_y + prng(row_range);
-            if(is_valid_asteroid_position(asteroid->position, settings->asteroids.min_distance_between_asteroids)) {
-                home_placed = true;
-                break;
-            }
-        }
-        if(!home_placed) {
-            // Exit to outer retry loop to start from scratch or die
+        Asteroid *asteroid = &asteroids.items[asteroids.count];
+        if(find_position_within_bounds(&asteroid->position, bounds)) {
+            asteroid->effect = AST_EFFECT_PLAYER_HOME;
+            asteroids.count++;
+            home_asteroids.items[home_asteroids.count] = *asteroid;
+            home_asteroids.count++;
+        } else {
+            stats.retries_home_asteroids++;
             return false;
         }
-
-        // Success, set other properties
-        asteroid->effect = AST_EFFECT_PLAYER_HOME;
-        asteroid->size = AST_SIZE_MEDIUM;
-        asteroid->speed.x = 0;
-        asteroid->speed.y = 0;
 
         // Give each home asteroid at least N directly reachable asteroids
         for(uint8_t j = 0; j < settings->asteroids.min_home_reachable_asteroids; j++) {
             Asteroid *reachable_asteroid = &asteroids.items[asteroids.count];
-            bool reachable_placed = false;
-            for(int attempts = 0; attempts < max_placement_attempts; attempts++) {
-                const int32_t distance = prng_range(settings->asteroids.min_distance_between_asteroids, settings->asteroids.max_home_reachable_distance);
-                const float angle = prng(360) / 360.0f * M_PI * 2;
-                const Vector position = (Vector){
-                    .x = (int32_t)(asteroid->position.x + cos(angle) * distance),
-                    .y = (int32_t)(asteroid->position.y + sin(angle) * distance),
-                };
-                if(is_valid_asteroid_position(position, settings->asteroids.min_distance_between_asteroids)) {
-                    reachable_asteroid->position = position;
-                    asteroids.count++;
-                    reachable_placed = true;
-                    break;
-                }
-            }
-            if(!reachable_placed) {
-                // Exit to outer retry loop to start from scratch or die
+            if(find_position_within_distance(&reachable_asteroid->position, asteroid->position, settings->asteroids.min_distance_between_asteroids, settings->asteroids.max_home_reachable_distance)) {
+                asteroids.count++;
+            } else {
+                LOG_DEBUG("Reachable asteroid not placed after %d attempts\n", max_placement_attempts);
                 return false;
             }
         }
     }
     return true;
+}
+
+static bool place_random_asteroids(AsteroidPlacementBounds bounds, uint16_t count) {
+    int16_t target_index = asteroids.count + count;
+    for(Asteroid *asteroid = asteroids.items + asteroids.count; asteroid != asteroids.items + target_index; asteroid++) {
+        if(!find_position_within_bounds(&asteroid->position, bounds)) {
+            return false;
+        }
+        asteroids.count++;
+    }
+    return true;
+}
+
+
+static void calculate_home_asteroid_neighbour_counts(HomeAsteroidNeighbourCount *counts) {
+    for(uint8_t i = 0; i < home_asteroids.count; i++) {
+        counts[i].home_asteroid = &home_asteroids.items[i];
+        counts[i].count = 0;
+    }
+
+    for(Asteroid *asteroid = asteroids.items; asteroid != asteroids.items + asteroids.count; asteroid++) {
+        if(asteroid->effect == AST_EFFECT_PLAYER_HOME) {
+            continue;
+        }
+        int32_t min_distance = INT32_MAX;
+        int min_index = -1;
+        for(int j = 0; j < home_asteroids.count; j++) {
+            const Asteroid *home_asteroid = &home_asteroids.items[j];
+            const int32_t dx = asteroid->position.x - home_asteroid->position.x;
+            const int32_t dy = asteroid->position.y - home_asteroid->position.y;
+            const int32_t distance = dx * dx + dy * dy;
+            if(distance < min_distance) {
+                min_distance = distance;
+                min_index = j;
+            }
+        }
+        if(min_index >= 0) {
+            counts[min_index].count++;
+        }
+    }
 }
 
 /**
@@ -141,27 +212,76 @@ static bool place_home_asteroids(GameSettings *settings) {
  * @param settings The settings for the asteroid generation
  */
 bool asteroids_generate(GameSettings *settings) {
+    static const int max_attempts = 10;
+    if(asteroids.count > 0) {
+        asteroids_free();
+    }
+    stats = (AsteroidGenerationStats){0}; // Reset stats
+
     // Die if we have too few or too many players, or if we don't have enough asteroids to place all the home asteroids
     if(settings->player_count < 2 || settings->player_count > 8 || settings->player_count * 3 > settings->asteroids.asteroid_count) {
         LOG_DEBUG("Asteroids generation failed: Invalid player count: %d\n", settings->player_count);
         return false;
     }
 
-    for(int attempts = 0; attempts < 10; attempts++) {
-        if(asteroids.count > 0) {
-            asteroids_free();
-        }
+    const AsteroidPlacementBounds bounds = (AsteroidPlacementBounds){
+        .min = (Vector){ .x = 0, .y = 0 },
+        .max = settings->sector_size,
+        .min_distance = settings->asteroids.min_distance_between_asteroids
+    };
 
-        // Create the asteroids
-        asteroids.items = (Asteroid*)calloc(settings->asteroids.asteroid_count, sizeof(Asteroid));
+    // Create the asteroids
+    asteroids.items = (Asteroid*)calloc(settings->asteroids.asteroid_count, sizeof(Asteroid));
+    home_asteroids.items = (Asteroid*)calloc(settings->player_count, sizeof(Asteroid));
+
+    // Outer retry loop for placement of asteroids
+    for(int attempts = 0; attempts < max_attempts; attempts++) {
         asteroids.count = 0;
-
+        home_asteroids.count = 0;
         if(!place_home_asteroids(settings)) {
             continue;
-        };
+        }
 
-        for(Asteroid *asteroid = asteroids.items + settings->player_count; asteroid != asteroids.items + asteroids.count; asteroid++) {
-            // Apply effects
+
+        // Place 90% of the remaining asteroids randomly
+        const uint16_t remaining_asteroids = settings->asteroids.asteroid_count - asteroids.count;
+        if(!place_random_asteroids(bounds, (uint16_t)(remaining_asteroids * 0.8))) {
+            LOG_DEBUG("Asteroid not placed after %d attempts\n", max_placement_attempts);
+            continue;
+        }
+
+        HomeAsteroidNeighbourCount home_asteroid_neighbour_counts[8];
+        calculate_home_asteroid_neighbour_counts(home_asteroid_neighbour_counts);
+
+        for(uint8_t i = 0; i < home_asteroids.count; i++) {
+            LOG_DEBUG("Home asteroid %d has %d neighbours\n", i, home_asteroid_neighbour_counts[i].count);
+        }
+
+        if(attempts > 1 ) {
+            LOG_DEBUG("Home asteroids placed after %d attempts\n", attempts);
+        }
+        break;
+    }
+    if(asteroids.count == 0) {
+        LOG_DEBUG("Home asteroids not placed after %d attempts\n", max_attempts);
+        return false;
+    }
+
+    // Apply effects, sizes and remaining properties to placed asteroids
+    for(Asteroid *asteroid = asteroids.items; asteroid != asteroids.items + settings->asteroids.asteroid_count; asteroid++) {
+        // Apply effects
+        if(asteroid->effect == AST_EFFECT_PLAYER_HOME) {
+            asteroid->size = AST_SIZE_MEDIUM;
+            asteroid->habitable_space = 100;
+            asteroid->speed = (Vector){
+                .x = 0,
+                .y = 0,
+            };
+            asteroid->acceleration = (Vector){
+                .x = 0,
+                .y = 0,
+            };
+        } else {
             if(prng(100) < settings->asteroids.effect_chance) {
                 asteroid->effect = (enum AsteroidEffect)(prng_range(AST_EFFECT_START, AST_EFFECT_END));
             }
@@ -175,7 +295,6 @@ bool asteroids_generate(GameSettings *settings) {
                 asteroid->size = AST_SIZE_MEDIUM;
             }
         }
-
     }
     return true;
 }
