@@ -133,12 +133,28 @@ void test_player_deposition(GameSettings settings, int iterations, int player_co
     DrawFilter filter = {
         .effect = AST_EFFECT_PLAYER_HOME
     };
+
+    int placement_retries = 0;
+    int placement_failures = 0;
+    int max_placement_retries = 0;
+    int max_placement_failures = 0;
     for(int i = 0; i < iterations; i++) {
         Asteroids *asteroids = execute_generator(settings);
+        AsteroidGenerationStats stats = asteroid_generation_stats();
+        placement_retries += stats.placement_retries;
+        placement_failures += stats.placement_failures;
+        if(stats.placement_retries > max_placement_retries) {
+            max_placement_retries = stats.placement_retries;
+        }
+        if(stats.placement_failures > max_placement_failures) {
+            max_placement_failures = stats.placement_failures;
+        }
         draw_asteroids(asteroids, asteroids->count, grid, settings.sector_size, &filter);
     }
 
     printf("%s", grid.buffer);
+    printf("Placement retries: avg %d, max %d\n", (int)(placement_retries / iterations), max_placement_retries);
+    printf("Placement failures: avg %d, max %d\n", (int)(placement_failures / iterations), max_placement_failures);
     printf("Test passed: %d players deposition with %d iterations\n", player_count, iterations);
     printf("\n\n");
     free(grid.buffer);
@@ -184,6 +200,18 @@ void test_full_deposition(GameSettings settings) {
     Grid grid = create_grid(grid_width, grid_height);
 
     Asteroids *asteroids = execute_generator(settings);
+    AsteroidGenerationStats stats = asteroid_generation_stats();
+    if(stats.placement_retries > 0) {
+        printf("Placement retries: %d\n", stats.placement_retries);
+    }
+    if(stats.placement_failures > 0) {
+        printf("Placement failures: %d\n", stats.placement_failures);
+    }
+    printf("Neighbours: ");
+    for(int i = 0; i < settings.player_count; i++) {
+        printf("[%d] %d, ", i, stats.home_asteroid_neighbour_counts[i].count);
+    }
+    printf("\n");
     draw_asteroids(asteroids, asteroids->count, grid, settings.sector_size, NULL);
 
     printf("%s", grid.buffer);
