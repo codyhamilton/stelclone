@@ -62,8 +62,8 @@ typedef struct {
  */
 typedef struct {
     HomeAsteroidNeighbourCount home_asteroid_neighbour_counts[8];
-    int8_t placement_retries;
-    int8_t placement_failures;
+    int placement_retries;
+    int placement_failures;
 } AsteroidGenerationStats;
 
 AsteroidGenerationStats asteroid_generation_stats(void);

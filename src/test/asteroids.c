@@ -126,8 +126,8 @@ Asteroids *execute_generator(GameSettings settings) {
     return asteroids_list();
 }
 
-void test_player_deposition(GameSettings settings, int iterations, int player_count) {
-    printf("Testing %d players deposition with %d iterations...\n", player_count, iterations);
+void test_player_deposition(GameSettings settings, int iterations) {
+    printf("Testing %d players deposition with %d iterations...\n", settings.player_count, iterations);
     Grid grid = create_grid(width, height);
 
     DrawFilter filter = {
@@ -155,7 +155,7 @@ void test_player_deposition(GameSettings settings, int iterations, int player_co
     printf("%s", grid.buffer);
     printf("Placement retries: avg %d, max %d\n", (int)(placement_retries / iterations), max_placement_retries);
     printf("Placement failures: avg %d, max %d\n", (int)(placement_failures / iterations), max_placement_failures);
-    printf("Test passed: %d players deposition with %d iterations\n", player_count, iterations);
+    printf("Test passed: %d players deposition with %d iterations\n", settings.player_count, iterations);
     printf("\n\n");
     free(grid.buffer);
 }
@@ -230,11 +230,10 @@ int main(int argc, char *argv[]) {
         .sector_size_selection = GAME_SECTOR_SIZE_MEDIUM,
         .asteroid_density_selection = GAME_ASTEROID_DENSITY_MEDIUM,
     };
-    GameSettings default_settings = game_settings(selection);
-
-    for(int i = 2; i <= 8; i++) {
-        default_settings.player_count = i;
-        test_player_deposition(default_settings, 200, i);
+    for(int i = 3; i <= 8; i++) {
+        GameSettings settings = game_settings(selection);
+        settings.player_count = i;
+        test_player_deposition(settings, 200);
     }
 
     for(int i = GAME_SECTOR_SIZE_SMALL; i <= GAME_SECTOR_SIZE_LARGE; i++) {

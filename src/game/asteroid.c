@@ -13,10 +13,15 @@ static AsteroidGenerationStats stats;
 void updateAsteroids() { }
 
 static void asteroids_free() {
+    if(!asteroids.items) {
+        return;
+    }
     for(uint16_t i = 0; i < asteroids.count; i++) {
         free(asteroids.items[i].deposits.items);
     }
     free(asteroids.items);
+    asteroids.items = NULL;
+    asteroids.count = 0;
 }
 
 /**
@@ -192,6 +197,22 @@ static bool place_random_asteroids(AsteroidPlacementBounds bounds, uint16_t coun
     return true;
 }
 
+static int16_t calculate_nearest_home_asteroid_index(Vector position) {
+    int32_t min_distance = INT32_MAX;
+    int min_index = -1;
+    for(int j = 0; j < asteroids.count && asteroids.items[j].effect == AST_EFFECT_PLAYER_HOME; j++) {
+        const Asteroid *candidate_asteroid = &asteroids.items[j];
+        const int32_t dx = position.x - candidate_asteroid->position.x;
+        const int32_t dy = position.y - candidate_asteroid->position.y;
+        const int32_t distance = dx * dx + dy * dy;
+        if(distance < min_distance) {
+            min_distance = distance;
+            min_index = j;
+        }
+    }
+    return min_index;
+
+}
 
 static void calculate_home_asteroid_neighbour_counts(HomeAsteroidNeighbourCount *counts, uint8_t player_count) {
     for(uint8_t i = 0; i < player_count; i++) {
@@ -203,22 +224,26 @@ static void calculate_home_asteroid_neighbour_counts(HomeAsteroidNeighbourCount 
         if(asteroid->effect == AST_EFFECT_PLAYER_HOME) {
             continue;
         }
-        int32_t min_distance = INT32_MAX;
-        int min_index = -1;
-        for(int j = 0; j < player_count; j++) {
-            const Asteroid *home_asteroid = &asteroids.items[j];
-            const int32_t dx = asteroid->position.x - home_asteroid->position.x;
-            const int32_t dy = asteroid->position.y - home_asteroid->position.y;
-            const int32_t distance = dx * dx + dy * dy;
-            if(distance < min_distance) {
-                min_distance = distance;
-                min_index = j;
-            }
-        }
-        if(min_index >= 0) {
-            counts[min_index].count++;
+        const int16_t nearest_home_asteroid_index = calculate_nearest_home_asteroid_index(asteroid->position);
+        if(nearest_home_asteroid_index >= 0) {
+            counts[nearest_home_asteroid_index].count++;
         }
     }
+}
+
+/**
+ * Compare two home asteroid neighbour counts
+ *
+ * Sort from smallest to largest
+ * 
+ * @param a The first home asteroid neighbour count
+ * @param b The second home asteroid neighbour count
+ * @return -1 if a is less than b, 1 if a is greater than b, 0 if they are equal
+ */
+static int compare_counts(const void *a, const void *b) {
+  const HomeAsteroidNeighbourCount *count_a = (const HomeAsteroidNeighbourCount *)a;
+  const HomeAsteroidNeighbourCount *count_b = (const HomeAsteroidNeighbourCount *)b;
+  return count_a->count - count_b->count;
 }
 
 /**
@@ -228,9 +253,36 @@ static void calculate_home_asteroid_neighbour_counts(HomeAsteroidNeighbourCount 
  *
  * @param counts neighbour counts for each home asteroid
  * @param player_count The number of players
+ * @return True if the home regions were backfilled successfully, false otherwise
  */
-static void backfill_home_regions(HomeAsteroidNeighbourCount *counts, uint8_t player_count) {
-    return;
+static bool backfill_home_regions(HomeAsteroidNeighbourCount *counts, GameSettings *settings) {
+  qsort(counts, settings->player_count, sizeof(HomeAsteroidNeighbourCount), compare_counts);
+
+  const AsteroidPlacementBounds bounds = (AsteroidPlacementBounds){
+    .min = (Vector){ .x = 0, .y = 0 },
+    .max = settings->sector_size,
+    .min_distance = settings->asteroids.min_distance_between_asteroids
+  };
+
+  for(int i = asteroids.count; i < settings->asteroids.asteroid_count; i++) {
+    Asteroid *asteroid = &asteroids.items[i];
+    Vector position = (Vector){0, 0};
+    // We round robin through home asteroids with the smallest count until all asteroids have been placed
+    for(int j = 0; j < settings->player_count && counts[j].count <= counts[0].count; j++) {
+        for(int k = 0; k < 200; k++) {
+            if(!find_position_within_bounds(&position, bounds)) {
+                return false;
+            }
+            if(&asteroids.items[calculate_nearest_home_asteroid_index(position)] == counts[j].home_asteroid) {
+                asteroid->position = position;
+                asteroids.count++;
+                counts[j].count++;
+                break;
+            }
+        }
+    }
+  }
+  return true;
 }
 
 /**
@@ -239,16 +291,19 @@ static void backfill_home_regions(HomeAsteroidNeighbourCount *counts, uint8_t pl
  * @param settings The settings for the asteroid generation
  */
 bool asteroids_generate(GameSettings *settings) {
+    LOG_DEBUG("Generating asteroids for %d players\n", settings->player_count);
     static const int max_attempts = 10;
-    if(asteroids.count > 0) {
-        asteroids_free();
-    }
 
     // Die if we have too few or too many players, or if we don't have enough asteroids to place all the home asteroids
     if(settings->player_count < 2 || settings->player_count > 8 || settings->player_count * 3 > settings->asteroids.asteroid_count) {
         LOG_DEBUG("Asteroids generation failed: Invalid player count: %d\n", settings->player_count);
         return false;
     }
+
+    if(asteroids.items) {
+        asteroids_free();
+    }
+    stats = (AsteroidGenerationStats){0};
 
     const AsteroidPlacementBounds bounds = (AsteroidPlacementBounds){
         .min = (Vector){ .x = 0, .y = 0 },
@@ -258,7 +313,10 @@ bool asteroids_generate(GameSettings *settings) {
 
     // Reset initial state
     asteroids.items = (Asteroid*)calloc(settings->asteroids.asteroid_count, sizeof(Asteroid));
-    stats = (AsteroidGenerationStats){0}; // Reset stats
+    if(!asteroids.items) {
+        LOG_DEBUG("Asteroids generation failed: Out of memory\n");
+        return false;
+    }
 
     // Outer retry loop for placement of asteroids
     for(int attempts = 0; attempts < max_attempts; attempts++) {
@@ -282,12 +340,16 @@ bool asteroids_generate(GameSettings *settings) {
         // Now we will do some targeted positioning, using remaining asteroids to balance out home regions
         // In this step we will ignore failures and just place as many as we can
         calculate_home_asteroid_neighbour_counts(stats.home_asteroid_neighbour_counts, settings->player_count);
-        backfill_home_regions(stats.home_asteroid_neighbour_counts, settings->player_count);
+        if(!backfill_home_regions(stats.home_asteroid_neighbour_counts, settings)) {
+            stats.placement_failures++;
+            continue;
+        }
 
         break;
     }
     if(asteroids.count == 0) {
         LOG_DEBUG("Home asteroids not placed after %d attempts\n", max_attempts);
+        asteroids_free();
         return false;
     }
 
