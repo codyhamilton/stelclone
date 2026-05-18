@@ -1,7 +1,6 @@
 #include "asteroid.h"
 #include <math.h>
 #include <stdlib.h>
-#include <string.h>
 #include "../util/log.h"
 #include "../util/rand.h"
 
@@ -264,21 +263,28 @@ static bool backfill_home_regions(HomeAsteroidNeighbourCount *counts, GameSettin
     .min_distance = settings->asteroids.min_distance_between_asteroids
   };
 
-  for(int i = asteroids.count; i < settings->asteroids.asteroid_count; i++) {
-    Asteroid *asteroid = &asteroids.items[i];
-    Vector position = (Vector){0, 0};
+  while(asteroids.count < settings->asteroids.asteroid_count) {
     // We round robin through home asteroids with the smallest count until all asteroids have been placed
     for(int j = 0; j < settings->player_count && counts[j].count <= counts[0].count; j++) {
+        Asteroid *asteroid = &asteroids.items[asteroids.count];
+        Vector position = (Vector){0, 0};
+        bool found = false;
         for(int k = 0; k < 200; k++) {
             if(!find_position_within_bounds(&position, bounds)) {
-                return false;
+                LOG_DEBUG("Failed to find position within bounds for asteroid %d\n", asteroids.count);
+                break;
             }
             if(&asteroids.items[calculate_nearest_home_asteroid_index(position)] == counts[j].home_asteroid) {
                 asteroid->position = position;
                 asteroids.count++;
                 counts[j].count++;
+                found = true;
                 break;
             }
+        }
+        if(!found) {
+            LOG_DEBUG("Failed to find position within bounds for asteroid %d\n", asteroids.count);
+            return false;
         }
     }
   }

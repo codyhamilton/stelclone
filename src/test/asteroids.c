@@ -217,6 +217,7 @@ void test_full_deposition(GameSettings settings) {
     printf("%s", grid.buffer);
     printf("Test passed: Full asteroid deposition with %s sector size and %s asteroid density\n", sector_size_name, asteroid_density_name);
     printf("\n\n");
+
     free(grid.buffer);
 }
 /**
