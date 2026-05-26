@@ -5,9 +5,17 @@
 #include "../util/rand.h"
 
 static const float ASTEROID_BACKFILL_PERCENTAGE = 0.2f; // 20% of asteroids are reserved to backfill under-populated home regions
+static const uint16_t nearest_neighbour_grid_cell_size = 200; // Cell size for nearest neighbour grid, in units of distance. This is used to speed up nearest neighbour calculations when backfilling home regions.
+
+typedef struct {
+  uint8_t *items;
+  uint32_t count;
+  uint32_t stride;
+} NeighbourGrid;
 
 static Asteroids asteroids;
 static AsteroidGenerationStats stats;
+static NeighbourGrid nearest_neighbour_grid = {0};
 
 void updateAsteroids() { }
 
@@ -195,6 +203,34 @@ static bool place_random_asteroids(AsteroidPlacementBounds bounds, uint16_t coun
     }
     return true;
 }
+
+/**
+ * Calculate the nearest neighbour grid
+ * 
+ * For each cell, calculate the nearest player home asteroid and store the index.
+ * Will allow O(1) nearest home asteroid lookups when backfilling.
+ */
+static void calculate_nearest_neighbour_grid(GameSettings *settings) {
+    const uint16_t grid_width = (settings->sector_size.x + nearest_neighbour_grid_cell_size - 1) / nearest_neighbour_grid_cell_size;
+    const uint16_t grid_height = (settings->sector_size.y + nearest_neighbour_grid_cell_size - 1) / nearest_neighbour_grid_cell_size;
+    const uint32_t grid_size = grid_width * grid_height;
+    if(nearest_neighbour_grid.count != 0) {
+      free(nearest_neighbour_grid.items);
+    }
+    nearest_neighbour_grid.items = (uint8_t*)malloc(grid_size * sizeof(uint8_t));
+    if(!nearest_neighbour_grid.items) {
+        LOG_DEBUG("Failed to allocate memory for nearest neighbour grid\n");
+        return;
+    }
+
+    for(Asteroid *asteroid = asteroids.items; asteroid != asteroids.items + asteroids.count; asteroid++) {
+        const uint16_t cell_x = asteroid->position.x / nearest_neighbour_grid_cell_size;
+        const uint16_t cell_y = asteroid->position.y / nearest_neighbour_grid_cell_size;
+        const uint32_t cell_index = cell_y * grid_width + cell_x;
+        nearest_neighbour_grid[cell_index]++;
+    }
+}
+
 
 static int16_t calculate_nearest_home_asteroid_index(Vector position) {
     int32_t min_distance = INT32_MAX;

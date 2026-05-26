@@ -29,7 +29,7 @@ Grid create_grid( int width, int height) {
         fprintf(stderr, "Failed to allocate memory for the grid\n");
         exit(1);
     }
-    
+
     // Fill with spaces first
     memset(buffer, ' ', stride * rows * sizeof(char));
 
