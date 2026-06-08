@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "../util/log.h"
 #include "../util/rand.h"
+#include "./asteroid/position.h"
 
 static const float ASTEROID_BACKFILL_PERCENTAGE = 0.2f; // 20% of asteroids are reserved to backfill under-populated home regions
 static const uint16_t nearest_neighbour_grid_cell_size = 200; // Cell size for nearest neighbour grid, in units of distance. This is used to speed up nearest neighbour calculations when backfilling home regions.
@@ -16,8 +17,6 @@ typedef struct {
 static Asteroids asteroids;
 static AsteroidGenerationStats stats;
 static NeighbourGrid nearest_neighbour_grid = {0};
-
-void updateAsteroids() { }
 
 static void asteroids_free() {
     if(!asteroids.items) {
@@ -59,72 +58,7 @@ Asteroid *asteroid_get(uint16_t id) {
     return NULL;
 }
 
-/**
- * Check if a position is valid for an asteroid
- * 
- * This checks if the position is within the minimum distance between asteroids
- * it will check against all already placed asteroids
- *
- * @param p The position to check
- * @param min The minimum distance between asteroids
- * @return True if the position is valid, false otherwise
- */
-static bool is_valid_asteroid_position(Vector p, int32_t min) {
-    const int32_t min_x = p.x - min;
-    const int32_t min_y = p.y - min;
-    const int32_t max_x = p.x + min;
-    const int32_t max_y = p.y + min;
-    const int64_t min_squared = min * min;
-    for(Asteroid *asteroid = asteroids.items; asteroid < asteroids.items + asteroids.count; asteroid++) {
-        Vector a = asteroid->position;
-        if(a.x >= min_x && a.x <= max_x && a.y >= min_y && a.y <= max_y) {
-            const int64_t dx = a.x - p.x;
-            const int64_t dy = a.y - p.y;
-            if(dx * dx + dy * dy < min_squared) {
-                return false;
-            }
-        }   
-    }
-    return true;
-}
-
-typedef struct {
-    Vector min; // Minimum position
-    Vector max; // Maximum position
-    int32_t min_distance; // Minimum distance between asteroids
-} AsteroidPlacementBounds;
-
 static const int max_placement_attempts = 100;
-
-static bool find_position_within_bounds(Vector *position, AsteroidPlacementBounds bounds) {
-    for(int attempts = 0; attempts < max_placement_attempts; attempts++) {
-        position->x = prng(bounds.max.x - bounds.min.x) + bounds.min.x;
-        position->y = prng(bounds.max.y - bounds.min.y) + bounds.min.y;
-        if(is_valid_asteroid_position(*position, bounds.min_distance)) {
-            return true;
-        }
-        stats.placement_retries++;
-    }
-    position->x = 0;
-    position->y = 0;
-    return false;
-}
-
-static bool find_position_within_distance(Vector *position, Vector center, int32_t min_distance, int32_t max_distance) {
-    for(int attempts = 0; attempts < max_placement_attempts; attempts++) {
-        const int32_t distance = prng_range(min_distance, max_distance);
-        const float angle = prng(360) / 360.0f * M_PI * 2;
-        position->x = (int32_t)(center.x + cos(angle) * distance);
-        position->y = (int32_t)(center.y + sin(angle) * distance);
-        if(is_valid_asteroid_position(*position, min_distance)) {
-            return true;
-        }
-        stats.placement_retries++;
-    }
-    position->x = 0;
-    position->y = 0;
-    return false;
-}
 
 /**
  * Place the home asteroids
@@ -182,7 +116,8 @@ static bool place_reachable_asteroids(GameSettings *settings, uint8_t player_cou
         // Give each home asteroid at least N directly reachable asteroids
         for(uint8_t j = 0; j < settings->asteroids.min_home_reachable_asteroids; j++) {
             Asteroid *reachable_asteroid = &asteroids.items[asteroids.count];
-            if(find_position_within_distance(&reachable_asteroid->position, home_asteroid->position, settings->asteroids.min_distance_between_asteroids, settings->asteroids.max_home_reachable_distance)) {
+            uint32_t attempts = max_placement_attempts;
+            if(find_position_within_distance(&asteroids, &reachable_asteroid->position, home_asteroid->position, settings->asteroids.min_distance_between_asteroids, settings->asteroids.max_home_reachable_distance, &attempts)) {
                 asteroids.count++;
             } else {
                 LOG_DEBUG("Reachable asteroid not placed after %d attempts\n", max_placement_attempts);
@@ -194,14 +129,15 @@ static bool place_reachable_asteroids(GameSettings *settings, uint8_t player_cou
 }
 
 static bool place_random_asteroids(AsteroidPlacementBounds bounds, uint16_t count) {
-    int16_t target_index = asteroids.count + count;
-    for(Asteroid *asteroid = asteroids.items + asteroids.count; asteroid != asteroids.items + target_index; asteroid++) {
-        if(!find_position_within_bounds(&asteroid->position, bounds)) {
-            return false;
-        }
-        asteroids.count++;
+  int16_t target_index = asteroids.count + count;
+  for(Asteroid *asteroid = asteroids.items + asteroids.count; asteroid != asteroids.items + target_index; asteroid++) {
+    uint32_t attempts = max_placement_attempts;
+    if(!find_position_within_bounds(&asteroids, &asteroid->position, bounds, &attempts)) {
+      return false;
     }
-    return true;
+    asteroids.count++;
+  }
+  return true;
 }
 
 /**

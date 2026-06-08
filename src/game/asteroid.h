@@ -32,6 +32,7 @@ typedef struct {
     enum AsteroidEffect effect;
     uint16_t habitable_space; // in square units
     uint16_t id;
+    uint32_t cell_index;
 } Asteroid;
 
 /**
