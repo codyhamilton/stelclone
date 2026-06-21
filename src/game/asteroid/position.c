@@ -11,6 +11,7 @@ static SectorGrid sector_grid = {0};
  * Places each of the asteroids into cells based on position
  */
 void calculate_sector_grid(Asteroids *asteroids) {
+  const int32_t SECTOR_CELL_SIZE = 1000; // Size of each cell in the grid
   // Initial allocation
   if(sector_grid.asteroid_count == 0) {
     sector_grid.asteroids = (Asteroid*)calloc(asteroids->count, sizeof(&asteroids));
@@ -31,6 +32,7 @@ void calculate_sector_grid(Asteroids *asteroids) {
   for(Asteroid *asteroid = asteroids->items; asteroid < asteroids->items + asteroids->count; asteroid++) {
     const int32_t x = asteroid->position.x / SECTOR_CELL_SIZE;
     const int32_t y = asteroid->position.y / SECTOR_CELL_SIZE;
+  }
 }
 
 

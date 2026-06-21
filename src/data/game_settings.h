@@ -4,6 +4,8 @@
 #include "game_types.h"
 #include <stdint.h>
 
+#define GAME_MAX_ASTEROIDS UINT8_MAX // Maximum number of asteroids in game at any time
+
 enum GameSettingsDifficulty {
     GAME_DIFFICULTY_EASY,
     GAME_DIFFICULTY_DEFAULT,
@@ -20,10 +22,10 @@ enum GameSettingsSectorSize {
 };
 
 enum GameSettingsAsteroidDensity {
+    GAME_ASTEROID_DENSITY_CUSTOM,
     GAME_ASTEROID_DENSITY_LOW,
     GAME_ASTEROID_DENSITY_MEDIUM,
     GAME_ASTEROID_DENSITY_HIGH,
-    GAME_ASTEROID_DENSITY_CUSTOM,
 };
 
 /**

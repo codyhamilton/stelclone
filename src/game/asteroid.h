@@ -8,12 +8,12 @@
 #include <stdint.h>
 
 typedef struct {
-    ResourceTypeDef *resource;
-    float quantity;
+    uint8_t quantity;
+    enum ResourceType resource;
 } ResourceDeposit;
 
 typedef struct {
-    ResourceDeposit *items;
+    ResourceDeposit items[GAME_MAX_RESOURCES];
     uint8_t count;
 } ResourceDeposits;
 
@@ -24,15 +24,14 @@ typedef struct {
  */
 typedef struct {
     char name[16];
-    ResourceDeposits deposits;
     Vector position;
-    Vector speed;
-    Vector acceleration;
+    uint32_t cell_index;
+    int8_t speed_x;
+    int8_t speed_y;
+    uint8_t habitable_space; // in square units
     enum AsteroidSize size;
     enum AsteroidEffect effect;
-    uint16_t habitable_space; // in square units
-    uint16_t id;
-    uint32_t cell_index;
+    ResourceDeposits deposits;
 } Asteroid;
 
 /**
@@ -41,8 +40,8 @@ typedef struct {
  * A list of asteroids in the game.
  */
 typedef struct {
-    Asteroid *items;
-    uint16_t count;
+    uint8_t count;
+    Asteroid items[GAME_MAX_ASTEROIDS];
 } Asteroids;
 
 

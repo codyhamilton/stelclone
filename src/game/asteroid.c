@@ -7,6 +7,7 @@
 
 static const float ASTEROID_BACKFILL_PERCENTAGE = 0.2f; // 20% of asteroids are reserved to backfill under-populated home regions
 static const uint16_t nearest_neighbour_grid_cell_size = 200; // Cell size for nearest neighbour grid, in units of distance. This is used to speed up nearest neighbour calculations when backfilling home regions.
+static const uint32_t max_placement_attempts = 300;
 
 typedef struct {
   uint8_t *items;
@@ -57,8 +58,6 @@ Asteroid *asteroid_get(uint16_t id) {
     }
     return NULL;
 }
-
-static const int max_placement_attempts = 100;
 
 /**
  * Place the home asteroids
@@ -242,7 +241,8 @@ static bool backfill_home_regions(HomeAsteroidNeighbourCount *counts, GameSettin
         Vector position = (Vector){0, 0};
         bool found = false;
         for(int k = 0; k < 200; k++) {
-            if(!find_position_within_bounds(&position, bounds)) {
+          uint32_t attempts = max_placement_attempts;
+            if(!find_position_within_bounds(&asteroids, &position, bounds, &attempts)) {
                 LOG_DEBUG("Failed to find position within bounds for asteroid %d\n", asteroids.count);
                 break;
             }

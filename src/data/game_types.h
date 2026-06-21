@@ -3,6 +3,9 @@
 #ifndef GAME_TYPES_H_
 #define GAME_TYPES_H_
 
+#define GAME_MAX_RESOURCES 10 // Maximum resources per asteroid
+#define GAME_RESOURCE_TYPES 10 // Maximum resource types in game
+
 /**
 * Defines shared game types used throughout the game.
 */
@@ -26,17 +29,17 @@ typedef struct {
  * P: Primary
  * S: Secondary
  */
-enum ResourceType {
-    RES_FR_C1,
-    RES_FR_C2,
-    RES_FR_A1,
-    RES_FR_A2,
-    RES_EX_P1,
-    RES_EX_P2,
-    RES_EX_S1,
-    RES_EX_S2,
-    RES_RE_P, 
-    RES_RE_S, 
+enum ResourceType : uint8_t {
+    RES_FR_C1 = 0,
+    RES_FR_C2 = 1,
+    RES_FR_A1 = 2,
+    RES_FR_A2 = 3,
+    RES_EX_P1 = 100,
+    RES_EX_P2 = 101,
+    RES_EX_S1 = 102,
+    RES_EX_S2 = 103,
+    RES_RE_P = 200, 
+    RES_RE_S = 201, 
 };
 
 /**
@@ -47,7 +50,7 @@ enum ResourceType {
  *
  * Smaller have more strategic/rare, larger more common resources
  */
-enum AsteroidSize {
+enum AsteroidSize : uint8_t {
     AST_SIZE_SMALL = 0,
     AST_SIZE_MEDIUM = 1,
     AST_SIZE_LARGE = 2,
@@ -62,7 +65,7 @@ enum AsteroidSize {
  * Note when adding new effects, you must update the AST_EFFECT_START and AST_EFFECT_END macros.
  */
 
-enum AsteroidEffect {
+enum AsteroidEffect : uint8_t {
     AST_EFFECT_NONE = 0,
     AST_EFFECT_PLAYER_HOME = 1,
     AST_EFFECT_IRRADIATED = 2,

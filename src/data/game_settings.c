@@ -73,12 +73,10 @@ GameSettings game_settings(GameSettingsSelection selection) {
         case GAME_SECTOR_SIZE_SMALL:
             settings.sector_size.x *= 0.5;
             settings.sector_size.y *= 0.5;
-            settings.asteroids.asteroid_count *= 0.5;
             break;
         case GAME_SECTOR_SIZE_LARGE:
             settings.sector_size.x *= 1.5;
             settings.sector_size.y *= 1.5;
-            settings.asteroids.asteroid_count *= 1.5;
             break;
         default:
             break;
@@ -88,7 +86,7 @@ GameSettings game_settings(GameSettingsSelection selection) {
             settings.asteroids.asteroid_count *= 0.5;
             break;
         case GAME_ASTEROID_DENSITY_HIGH:
-            settings.asteroids.asteroid_count *= 1.5;
+            settings.asteroids.asteroid_count *= 2;
             break;
         default:
             break;
