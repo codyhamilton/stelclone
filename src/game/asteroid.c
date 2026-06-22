@@ -1,6 +1,7 @@
 #include "asteroid.h"
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../util/log.h"
 #include "../util/rand.h"
 #include "./asteroid/position.h"
@@ -19,15 +20,8 @@ static Asteroids asteroids;
 static AsteroidGenerationStats stats;
 static NeighbourGrid nearest_neighbour_grid = {0};
 
-static void asteroids_free() {
-    if(!asteroids.items) {
-        return;
-    }
-    for(uint16_t i = 0; i < asteroids.count; i++) {
-        free(asteroids.items[i].deposits.items);
-    }
-    free(asteroids.items);
-    asteroids.items = NULL;
+static void reset_asteroids() {
+    memset(asteroids.items, 0, sizeof(asteroids.items));
     asteroids.count = 0;
 }
 
@@ -42,21 +36,6 @@ Asteroids *asteroids_list() {
 
 AsteroidGenerationStats asteroid_generation_stats() {
     return stats;
-}
-
-/**
- * Get an asteroid by its id
- * 
- * @param id The id of the asteroid to get
- * @return The asteroid
- */
-Asteroid *asteroid_get(uint16_t id) {
-    for(uint8_t i = 0; i < asteroids.count; i++) {
-        if(asteroids.items[i].id == id) {
-            return &asteroids.items[i];
-        }
-    }
-    return NULL;
 }
 
 /**

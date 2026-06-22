@@ -21,6 +21,7 @@ add_executable(Stelclone
     ${CMAKE_SOURCE_DIR}/src/game/asteroid.c
     ${CMAKE_SOURCE_DIR}/src/data/game_settings.c
     ${CMAKE_SOURCE_DIR}/src/util/pcg_basic.c
+    ${CMAKE_SOURCE_DIR}/src/game/asteroid/generate.c
 )
 add_executable(PerfAsteroids
     ${CMAKE_SOURCE_DIR}/src/perf/perf_asteroids.c
@@ -28,6 +29,7 @@ add_executable(PerfAsteroids
     ${CMAKE_SOURCE_DIR}/src/data/resources.c
     ${CMAKE_SOURCE_DIR}/src/data/game_settings.c
     ${CMAKE_SOURCE_DIR}/src/util/pcg_basic.c
+    ${CMAKE_SOURCE_DIR}/src/game/asteroid/generate.c
 )
 
 enable_testing()
@@ -37,6 +39,7 @@ add_executable(test_asteroids
     ${CMAKE_SOURCE_DIR}/src/data/resources.c
     ${CMAKE_SOURCE_DIR}/src/data/game_settings.c
     ${CMAKE_SOURCE_DIR}/src/util/pcg_basic.c
+    ${CMAKE_SOURCE_DIR}/src/game/asteroid/generate.c
 )
 add_test(NAME TestAsteroidGeneration COMMAND test_asteroids)
 

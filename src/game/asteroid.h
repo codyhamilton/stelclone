@@ -7,15 +7,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-typedef struct {
-    uint8_t quantity;
-    enum ResourceType resource;
-} ResourceDeposit;
-
-typedef struct {
-    ResourceDeposit items[GAME_MAX_RESOURCES];
-    uint8_t count;
-} ResourceDeposits;
 
 /**
  * Asteroid
@@ -23,15 +14,15 @@ typedef struct {
  * An asteroid in the game.
  */
 typedef struct {
-    char name[16];
-    Vector position;
+    char name[8];
     uint32_t cell_index;
+    Vector position;
+    ResourceDeposit resource_deposits[GAME_RESOURCE_TYPES];
     int8_t speed_x;
     int8_t speed_y;
     uint8_t habitable_space; // in square units
     enum AsteroidSize size;
     enum AsteroidEffect effect;
-    ResourceDeposits deposits;
 } Asteroid;
 
 /**

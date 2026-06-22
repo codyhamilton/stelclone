@@ -2,32 +2,27 @@
 #include "resources.h"
 #include "game_types.h"
 
-static const ResourceTypeDef resource_types_def[] = {
-    { RES_FR_C1, FRONTIER },
-    { RES_FR_C2, FRONTIER },
-    { RES_FR_A1, FRONTIER },
-    { RES_FR_A2, FRONTIER },
-    { RES_EX_P1, EXOTIC },
-    { RES_EX_P2, EXOTIC },
-    { RES_EX_S1, EXOTIC },
-    { RES_EX_S2, EXOTIC },
-    { RES_RE_P, RESTRICTED },
-    { RES_RE_S, RESTRICTED },
+static const Resource resources_list[] = {
+    { RES_FRONTIER_C1, FRONTIER },
+    { RES_FRONTIER_C2, FRONTIER },
+    { RES_FRONTIER_A1, FRONTIER },
+    { RES_FRONTIER_A2, FRONTIER },
+    { RES_EXOTIC_P1, EXOTIC },
+    { RES_EXOTIC_P2, EXOTIC },
+    { RES_EXOTIC_S1, EXOTIC },
+    { RES_EXOTIC_S2, EXOTIC },
+    { RES_RESTRICTED_P, RESTRICTED },
+    { RES_RESTRICTED_S, RESTRICTED },
 };
 
-static const ResourceTypeDefList resource_types_list = {
-    .items = resource_types_def,
-    .count = sizeof(resource_types_def) / sizeof(resource_types_def[0])
-};
-
-const ResourceTypeDefList *resource_types() {
-    return &resource_types_list;
+const Resource *resources() {
+    return resources_list;
 }
 
-const ResourceTypeDef *resource_type(enum ResourceType type) {
-    for(int i = 0; i < resource_types_list.count; i++) {
-        if(resource_types_list.items[i].type == type) {
-            return &resource_types_list.items[i];
+const Resource *resource(enum ResourceType type) {
+    for(int i = 0; i < GAME_RESOURCE_TYPES; i++) {
+        if(resources_list[i].type == type) {
+            return &resources_list[i];
         }
     }
     return NULL;
