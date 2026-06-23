@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 #define GAME_MAX_ASTEROIDS UINT8_MAX // Maximum number of asteroids in game at any time
+#define GAME_MAX_PLAYERS 8 // Maximum number of players in game at any time
 
 enum GameSettingsDifficulty {
     GAME_DIFFICULTY_EASY,

@@ -7,7 +7,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-
 /**
  * Asteroid
  * 
@@ -36,51 +35,21 @@ typedef struct {
 } Asteroids;
 
 
-/**
- * Home asteroid neighbour count
- * 
- * How many asteroids this home planet is closest to
- */
-typedef struct {
-    Asteroid *home_asteroid;
-    int32_t count;
-} HomeAsteroidNeighbourCount;
+Asteroids *asteroids(void);
 
 /**
- * Asteroid generation stats
+ * Get an asteroid by its index
  * 
- * Statistics for the asteroid generation process.
- */
-typedef struct {
-    HomeAsteroidNeighbourCount home_asteroid_neighbour_counts[8];
-    int placement_retries;
-    int placement_failures;
-} AsteroidGenerationStats;
-
-AsteroidGenerationStats asteroid_generation_stats(void);
-
-/**
- * Generate the asteroids
- * 
- * @param settings The settings for the asteroid generation
- */
-bool asteroids_generate(GameSettings *settings);
-
-Asteroids *asteroids_list();
-
-/**
- * Get an asteroid by its id
- * 
- * @param id The id of the asteroid to get
+ * @param index The index of the asteroid to get
  * @return The asteroid
  */
-Asteroid *asteroid_get(uint16_t id);
+Asteroid *asteroid(uint8_t index);
 
 /**
  * Destroy an asteroid
  * 
  * @param asteroid The asteroid to destroy
  */
-void asteroid_destroy(Asteroid *asteroid);
+void destroy_asteroid(uint8_t index);
 
 #endif
